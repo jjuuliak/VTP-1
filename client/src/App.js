@@ -1,11 +1,15 @@
 import React from 'react';
+import Navigation from './components/Navigation';
 
-function App() {
+const App = () => {
   return (
     <div>
-      <h1>Hello World from React!</h1>
+      <Navigation />
+      <main>
+
+      </main>
     </div>
   );
-}
+};
 
 export default App;
