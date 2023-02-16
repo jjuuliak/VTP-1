@@ -1,0 +1,42 @@
+.latest-documents {
+    width: 50%;
+    float: left;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  th, td {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #444;
+    color: white;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tr:hover {
+    background-color: #ddd;
+  }
+
+  th:first-child,
+  td:first-child {
+    width: 50%;
+  }
+
+  th:nth-child(2),
+  td:nth-child(2),
+  th:nth-child(3),
+  td:nth-child(3) {
+    display: table-cell;
+    width: 25%;
+  }
