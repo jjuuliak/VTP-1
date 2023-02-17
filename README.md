@@ -23,4 +23,4 @@ For any questions or concerns, please open an issue in the repository or contact
 
 ## License
 
-This project is licensed under the [Insert License Name] license. Please see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT license. Please see the [LICENSE](LICENSE) file for details.
