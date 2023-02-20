@@ -1,13 +1,18 @@
 {
-    "name": "hello-world-web-app",
-    "version": "1.0.0",
-    "description": "A simple 'Hello World' web application using Node.js with Express",
-    "main": "index.js",
-    "scripts": {
-      "start": "node index.js"
-    },
-    "dependencies": {
-      "express": "^4.17.1"
-    }
+  "name": "my-api",
+  "version": "1.0.0",
+  "description": "REST API for managing drafts and plans",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:dev": "nodemon index.js",
+    "start:prod": "node index.js --production"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
-  
+}
