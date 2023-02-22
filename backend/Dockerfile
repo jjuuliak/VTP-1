@@ -8,6 +8,15 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 3000
+# Set environment variables
+ENV PORT=3000
+ENV DB_HOST=db
+ENV DB_USER=root
+ENV DB_PASSWORD=secret
+ENV DB_NAME=mydatabase
 
-CMD [ "node", "index.js" ]
+# Expose port
+EXPOSE ${PORT}
+
+# Start server
+CMD [ "npm", "start" ]

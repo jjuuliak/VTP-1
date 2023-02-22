@@ -1,43 +1,83 @@
-const drafts = [
-    { id: 1, title: 'Draft 1', body: 'This is the first draft.' },
-    { id: 2, title: 'Draft 2', body: 'This is the second draft.' },
-    { id: 3, title: 'Draft 3', body: 'This is the third draft.' }
-];
+const express = require('express');
+const db = require('./db');
 
-let nextId = 4;
+const router = express.Router();
 
-function configureRoutes(app) {
-    app.get('/drafts', (req, res) => {
-        res.send(drafts);
-    });
+router.get('/', async (req, res) => {
+  try {
+    const results = await db.query('SELECT * FROM drafts');
+    res.send(results);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
+});
 
-    app.get('/drafts/:id', (req, res) => {
-        const id = parseInt(req.params.id);
-        const draft = drafts.find(d => d.id === id);
-        if (!draft) {
-            return res.status(404).send('Draft not found');
-        }
-        res.send(draft);
-    });
+router.get('/:id', async (req, res) => {
+  const id = req.params.id;
+  try {
+    const results = await db.query('SELECT * FROM drafts WHERE id = ?', [id]);
+    if (results.length > 0) {
+      res.send(results[0]);
+    } else {
+      res.status(404).send('Draft not found');
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
+});
 
-    app.post('/drafts', (req, res) => {
-        const draft = req.body;
-        draft.id = nextId++;
-        drafts.push(draft);
-        res.send(draft);
-    });
+router.post('/', async (req, res) => {
+  const { title, body } = req.body;
+  try {
+    const result = await db.query('INSERT INTO drafts (title, body) VALUES (?, ?)', [title, body]);
+    const newDraft = {
+      id: result.insertId,
+      title,
+      body
+    };
+    res.send(newDraft);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
+});
 
-    app.put('/drafts/:id', (req, res) => {
-        const id = parseInt(req.params.id);
-        const draftIndex = drafts.findIndex(d => d.id === id);
-        if (draftIndex === -1) {
-            return res.status(404).send('Draft not found');
-        }
-        const draft = req.body;
-        draft.id = id;
-        drafts[draftIndex] = draft;
-        res.send(draft);
-    });
-}
+router.put('/:id', async (req, res) => {
+  const id = req.params.id;
+  const { title, body } = req.body;
+  try {
+    const result = await db.query('UPDATE drafts SET title = ?, body = ? WHERE id = ?', [title, body, id]);
+    if (result.affectedRows > 0) {
+      const updatedDraft = {
+        id: parseInt(id),
+        title,
+        body
+      };
+      res.send(updatedDraft);
+    } else {
+      res.status(404).send('Draft not found');
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
+});
 
-module.exports = configureRoutes;
+router.delete('/:id', async (req, res) => {
+  const id = req.params.id;
+  try {
+    const result = await db.query('DELETE FROM drafts WHERE id = ?', [id]);
+    if (result.affectedRows > 0) {
+      res.send('Draft deleted');
+    } else {
+      res.status(404).send('Draft not found');
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
+});
+
+module.exports = router;

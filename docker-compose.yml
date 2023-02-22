@@ -1,11 +1,29 @@
 version: '3'
 services:
+  db:  
+    build: ./backend  # added by Tatu A.
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: mydatabase
+    volumes:
+      - db_data:/var/lib/mysql
   backend:
     build: ./backend
     ports:
       - "8080:3000"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: secret
+      DB_NAME: mydatabase           
   frontend:
     build: ./client
     ports:
       - "3000:3000"
+volumes:
+  db_data:
 

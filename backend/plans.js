@@ -1,43 +1,83 @@
-const plans = [
-    { id: 1, name: 'Plan 1', description: 'This is the first plan.' },
-    { id: 2, name: 'Plan 2', description: 'This is the second plan.' },
-    { id: 3, name: 'Plan 3', description: 'This is the third plan.' }
-];
+const express = require('express');
+const db = require('./db');
 
-let nextId = 4;
+const router = express.Router();
 
-function configureRoutes(app) {
-    app.get('/plans', (req, res) => {
-        res.send(plans);
-    });
+router.get('/', async (req, res) => {
+  try {
+    const results = await db.query('SELECT * FROM plans');
+    res.send(results);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
+});
 
-    app.get('/plans/:id', (req, res) => {
-        const id = parseInt(req.params.id);
-        const plan = plans.find(p => p.id === id);
-        if (!plan) {
-            return res.status(404).send('Plan not found');
-        }
-        res.send(plan);
-    });
+router.get('/:id', async (req, res) => {
+  const id = req.params.id;
+  try {
+    const results = await db.query('SELECT * FROM plans WHERE id = ?', [id]);
+    if (results.length > 0) {
+      res.send(results[0]);
+    } else {
+      res.status(404).send('Plan not found');
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
+});
 
-    app.post('/plans', (req, res) => {
-        const plan = req.body;
-        plan.id = nextId++;
-        plans.push(plan);
-        res.send(plan);
-    });
+router.post('/', async (req, res) => {
+  const { name, description } = req.body;
+  try {
+    const result = await db.query('INSERT INTO plans (name, description) VALUES (?, ?)', [name, description]);
+    const newPlan = {
+      id: result.insertId,
+      name,
+      description
+    };
+    res.send(newPlan);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
+});
 
-    app.put('/plans/:id', (req, res) => {
-        const id = parseInt(req.params.id);
-        const planIndex = plans.findIndex(p => p.id === id);
-        if (planIndex === -1) {
-            return res.status(404).send('Plan not found');
-        }
-        const plan = req.body;
-        plan.id = id;
-        plans[planIndex] = plan;
-        res.send(plan);
-    });
-}
+router.put('/:id', async (req, res) => {
+  const id = req.params.id;
+  const { name, description } = req.body;
+  try {
+    const result = await db.query('UPDATE plans SET name = ?, description = ? WHERE id = ?', [name, description, id]);
+    if (result.affectedRows > 0) {
+      const updatedPlan = {
+        id: parseInt(id),
+        name,
+        description
+      };
+      res.send(updatedPlan);
+    } else {
+      res.status(404).send('Plan not found');
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
+});
 
-module.exports = configureRoutes;
+router.delete('/:id', async (req, res) => {
+  const id = req.params.id;
+  try {
+    const result = await db.query('DELETE FROM plans WHERE id = ?', [id]);
+    if (result.affectedRows > 0) {
+      res.send('Plan deleted');
+    } else {
+      res.status(404).send('Plan not found');
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
+});
+
+module.exports = router;

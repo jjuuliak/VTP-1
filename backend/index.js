@@ -1,13 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const configureDraftsRoutes = require('./drafts');
-const configurePlansRoutes = require('./plans');
+const plansApp = require('./plans');
+const draftsApp = require('./drafts');
 
 const app = express();
 app.use(bodyParser.json());
 
-configureDraftsRoutes(app);
-configurePlansRoutes(app);
+app.use('/plans', plansApp);
+app.use('/drafts', draftsApp);
 
 const port = process.env.PORT || 3000;
 
