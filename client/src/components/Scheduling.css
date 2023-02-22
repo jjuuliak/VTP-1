@@ -1,0 +1,60 @@
+.scheduling-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.scheduling-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.scheduling-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.scheduling-table th,
+.scheduling-table td {
+  padding: 5px;
+  border: 1px solid black;
+}
+
+.scheduling-table th {
+  background-color: #444;
+}
+
+.scheduling-table tr:nth-child(odd) {
+  background-color: #f8f8f8;
+}
+
+.scheduling-table tr:nth-child(even) {
+  background-color: white;
+}
+
+.scheduling-table tr:hover {
+  background-color: #ddd;
+}
+
+.scheduling-button {
+  background-color: #f8f8f8;
+  color: black;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.scheduling-button:hover {
+  background-color: #d3d3d3;
+}
+
+.scheduling-button:before {
+  content: "< ";
+}
