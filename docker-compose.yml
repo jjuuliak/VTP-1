@@ -1,7 +1,6 @@
 version: '3'
 services:
   db:  
-    build: ./backend  # added by Tatu A.
     image: mysql:5.7
     restart: always
     environment:
@@ -19,11 +18,10 @@ services:
       DB_HOST: db
       DB_USER: root
       DB_PASSWORD: secret
-      DB_NAME: mydatabase           
+      DB_NAME: mydatabase
   frontend:
     build: ./client
     ports:
       - "3000:3000"
 volumes:
   db_data:
-
