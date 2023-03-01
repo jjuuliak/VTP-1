@@ -1,4 +1,4 @@
-const app = require('../index');
+const server = require('../index');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 
@@ -8,7 +8,7 @@ describe('/drafts', () => {
     // Test GET /drafts endpoint
     describe('GET /', () => {
         it('should return all drafts', (done) => {
-            chai.request(app)
+            chai.request(server)
                 .get('/drafts')
                 .end((err, res) => {
                     chai.expect(res).to.have.status(200);
@@ -25,7 +25,7 @@ describe('/drafts', () => {
                 title: 'My new draft',
                 body: 'This is the body of my new draft'
             };
-            chai.request(app)
+            chai.request(server)
                 .post('/drafts')
                 .send(draft)
                 .end((err, res) => {
@@ -46,13 +46,13 @@ describe('/drafts', () => {
                 title: 'My updated draft',
                 body: 'This is the updated body of my draft'
             };
-            chai.request(app)
+            chai.request(server)
                 .get('/drafts')
                 .end((err, res) => {
                     chai.expect(res).to.have.status(200);
                     chai.expect(res.body).to.be.an('array');
                     const id = res.body[0].id; // assuming at least one draft exists
-                    chai.request(app)
+                    chai.request(server)
                         .put(`/drafts/${id}`)
                         .send(draft)
                         .end((err, res) => {
@@ -70,17 +70,17 @@ describe('/drafts', () => {
     // Test DELETE /drafts/:id endpoint
     describe('DELETE /:id', () => {
         it('should delete an existing draft', (done) => {
-            chai.request(app)
+            chai.request(server)
                 .get('/drafts')
                 .end((err, res) => {
                     chai.expect(res).to.have.status(200);
                     chai.expect(res.body).to.be.an('array');
                     const id = res.body[0].id; // assuming at least one draft exists
-                    chai.request(app)
+                    chai.request(server)
                         .delete(`/drafts/${id}`)
                         .end((err, res) => {
                             chai.expect(res).to.have.status(200);
-                            chai.request(app)
+                            chai.request(server)
                                 .get(`/drafts/${id}`)
                                 .end((err, res) => {
                                     chai.expect(res).to.have.status(404);
@@ -88,6 +88,13 @@ describe('/drafts', () => {
                                 });
                         });
                 });
+        });
+    });
+
+    // Add after() hook to close the server
+    after((done) => {
+        server.close(() => {
+            done();
         });
     });
 });
