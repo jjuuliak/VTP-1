@@ -1,0 +1,16 @@
+.info-box {
+    border: none;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+  
+  .info-box h2 {
+    margin-top: 0;
+  }
+  
+  .info-box-text {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  

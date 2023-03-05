@@ -1,0 +1,13 @@
+.components-container {
+    display: flex;
+  }
+  
+  .component {
+    width: 50%;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+
+  .full-width {
+    width: 100%;
+  }

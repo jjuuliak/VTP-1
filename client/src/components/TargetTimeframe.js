@@ -2,9 +2,17 @@ import React from 'react';
 import './TargetTimeframe.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { Link } from 'react-router-dom';
 
 const TargetTimeframe = () => {
   const data = [
+    {
+      target: <Link to="/inspection-plan">Tarkastussuunnitelma</Link>,
+      plannedDate: '2023-02-21',
+      actualDate: '2023-02-23',
+      comments: '',
+      documentLink: <Link to="/inspection-plan">Linkki tarkastussuunnitelmaan</Link>
+    },
     {
       target: 'Increase sales',
       plannedDate: '2023-01-01',
@@ -71,7 +79,7 @@ const TargetTimeframe = () => {
                   />
                 </td>
                 <td>{item.comments}</td>
-                <td><a href={item.documentLink} target="_blank" rel="noopener noreferrer">Linkki</a></td>
+                <td>{item.documentLink}</td>
               </tr>
             );
           })}
