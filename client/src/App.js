@@ -1,10 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
-import InspectionInformation from './components/InspectionInformation';
-import LatestDocuments from './components/LatestDocuments';
-import Scheduling from './components/Scheduling';
-import TargetTimeframe from './components/TargetTimeframe';
+import DataContainer from './components/DataContainer';
 import InspectionPlan from './InspectionPlan';
 import './App.css';
 
@@ -15,12 +12,7 @@ const App = () => {
         <Navigation />
         <div className="main-container">
           <Routes>
-            <Route path="/" element={<>
-              <TargetTimeframe />
-              <InspectionInformation />
-              <LatestDocuments />
-              <Scheduling />
-            </>} />
+            <Route path="/" element={<DataContainer />} />
             <Route path="/inspection-plan" element={<InspectionPlan />} />
           </Routes>
         </div>
