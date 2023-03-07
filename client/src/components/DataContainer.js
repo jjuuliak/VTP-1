@@ -14,7 +14,7 @@ const DataContainer = () => {
     fetch('https://api.example.com/inspections')
       .then((response) => response.json())
       .then((data) => setInspectionData(data));
-    fetch('https://api.example.com/documents')
+    fetch('http://localhost:8080/api/documents')
       .then((response) => response.json())
       .then((data) => setLatestDocuments(data));
     fetch('https://api.example.com/scheduling')
