@@ -55,6 +55,33 @@ function initializeDatabase() {
     INSERT INTO documents (title, handler, modified) VALUES ('Document 3', 'John Smith', '2022-01-28 00:00:00');
   `;
 
+  const targettimeframesSql = `
+    CREATE TABLE IF NOT EXISTS targettimeframes (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      target_id INT NOT NULL,
+      planned_date DATE NOT NULL,
+      actual_date DATE,
+      comments VARCHAR(255),
+      document_id INT,
+      FOREIGN KEY (document_id) REFERENCES documents(id)
+    );
+
+    INSERT INTO targettimeframes (target_id, planned_date, actual_date, comments, document_id) VALUES
+    (1, '2023-02-21', '2023-02-23', '', 1),
+    (2, '2023-01-01', '2023-03-31', 'Some comments here', 2),
+    (3, '2023-02-01', '', 'Some comments here', 3),
+    (4, '2023-01-15', '2023-12-31', 'Some comments here', 4),
+    (5, '2023-03-01', '2024-01-31', 'Some comments here', 5);
+`;
+
+  connection.query(targettimeframesSql, (error, results) => {
+    if (error) {
+      console.error('Error initializing targettimeframes table:', error);
+    } else {
+      console.log('Targettimeframes table initialized');
+    }
+  });
+
   connection.query(draftsSql, (error, results) => {
     if (error) {
       console.error('Error initializing drafts table:', error);

@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const plansApp = require('./plans');
 const draftsApp = require('./drafts');
 const setupDocumentsRoute = require('./documents');
+const setupTargetTimeframesRoute = require('./targettimeframes');
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use('/plans', plansApp);
 app.use('/drafts', draftsApp);
 
 setupDocumentsRoute(app); // Call the exported function from documents.js, passing in the app instance
+setupTargetTimeframesRoute(app);
 
 const port = process.env.PORT || 3000;
 
