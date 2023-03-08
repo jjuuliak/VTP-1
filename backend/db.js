@@ -42,6 +42,19 @@ function initializeDatabase() {
     INSERT INTO plans (name, description) VALUES ('Plan 3', 'This is the third plan.');
   `;
 
+  const documentsSql = `
+    CREATE TABLE IF NOT EXISTS documents (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      title VARCHAR(255) NOT NULL,
+      handler VARCHAR(255),
+      modified DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    );
+
+    INSERT INTO documents (title, handler, modified) VALUES ('Document 1', 'Setä Manula', '2022-01-31 00:00:00');
+    INSERT INTO documents (title, handler, modified) VALUES ('Document 2', 'Jane Doe', '2022-01-29 00:00:00');
+    INSERT INTO documents (title, handler, modified) VALUES ('Document 3', 'John Smith', '2022-01-28 00:00:00');
+  `;
+
   connection.query(draftsSql, (error, results) => {
     if (error) {
       console.error('Error initializing drafts table:', error);
@@ -55,6 +68,14 @@ function initializeDatabase() {
       console.error('Error initializing plans table:', error);
     } else {
       console.log('Plans table initialized');
+    }
+  });
+
+  connection.query(documentsSql, (error, results) => {
+    if (error) {
+      console.error('Error initializing documents table:', error);
+    } else {
+      console.log('Documents table initialized');
     }
   });
 }
