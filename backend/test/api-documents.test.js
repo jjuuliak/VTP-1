@@ -1,7 +1,7 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const db = require('./db');
-const app = require('./app');
+const db = require('../db'); // Added a .
+const app = require('../index'); // changed this line
 
 chai.use(chaiHttp);
 const { expect } = chai;
@@ -63,14 +63,14 @@ describe('/api/documents', () => {
     it('should return an error if the document id is invalid', async () => {
       const updatedDocument = { title: 'Updated Document', handler: 'Jane Doe', modified: '2022-03-08 12:00:00' };
       const res = await chai.request(app).put('/api/documents/999').send(updatedDocument);
-      expect(res).to.have.status(500);
+      expect(res).to.have.status(404); // Modified the expected status code manually
       expect(res.body).to.have.property('error');
     });
   });
 
   describe('DELETE /:id', () => {
     it('should delete an existing document', async () => {
-      constexistingDocument = { id: 1, title: 'Existing Document', handler: 'Setä Manula', modified: '2022-01-31 00:00:00' };
+      const existingDocument = { id: 69, title: 'Existing Document', handler: 'Setä Manula', modified: '2022-01-31 00:00:00' }; // ChatGPT made the error of trying to push a document with a duplicate id
       await db.query('INSERT INTO documents SET ?', existingDocument);
       const res = await chai.request(app).delete(`/api/documents/${existingDocument.id}`);
       expect(res).to.have.status(204);
@@ -79,8 +79,15 @@ describe('/api/documents', () => {
     });
     it('should return an error if the document id is invalid', async () => {
         const res = await chai.request(app).delete('/api/documents/999');
-        expect(res).to.have.status(500);
+        expect(res).to.have.status(404); // Modified the expected status code manually
         expect(res.body).to.have.property('error');
+    });
+  });
+
+  // Add after() hook to close the server, Added these call manually since this was also a problem earlier
+  after((done) => {
+    app.close(() => {
+        done();
     });
   });
 });
