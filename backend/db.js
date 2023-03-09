@@ -60,18 +60,24 @@ function initializeDatabase() {
       id INT AUTO_INCREMENT PRIMARY KEY,
       target_id INT NOT NULL,
       planned_date DATE NOT NULL,
-      actual_date DATE,
-      comments VARCHAR(255),
-      document_id INT,
-      FOREIGN KEY (document_id) REFERENCES documents(id)
+      actual_date DATE DEFAULT NULL,
+      comments VARCHAR(255) DEFAULT NULL,
+      document_id INT DEFAULT NULL
     );
 
     INSERT INTO targettimeframes (target_id, planned_date, actual_date, comments, document_id) VALUES
-    (1, '2023-02-21', '2023-02-23', '', 1),
-    (2, '2023-01-01', '2023-03-31', 'Some comments here', 2),
-    (3, '2023-02-01', '', 'Some comments here', 3),
-    (4, '2023-01-15', '2023-12-31', 'Some comments here', 4),
-    (5, '2023-03-01', '2024-01-31', 'Some comments here', 5);
+      (1, '2022-01-01', null, 'This is the first target timeframe', null),
+      (2, '2022-02-01', '2022-02-02', 'This is the second target timeframe', null),
+      (3, '2022-03-01', '2022-03-05', 'This is the third target timeframe', null),
+      (4, '2022-04-01', '2022-04-03', 'This is the fourth target timeframe', null),
+      (5, '2022-05-01', '2022-05-02', 'This is the fifth target timeframe', null),
+      (6, '2022-06-01', null, 'This is the sixth target timeframe', null),
+      (7, '2022-07-01', null, 'This is the seventh target timeframe', null),
+      (8, '2022-08-01', '2022-08-03', 'This is the eighth target timeframe', null),
+      (9, '2022-09-01', '2022-09-04', 'This is the ninth target timeframe', null),
+      (10, '2022-10-01', '2022-10-02', 'This is the tenth target timeframe', null),
+      (2, '2022-11-01', null, 'This is the eleventh target timeframe with target_id 2', null),
+      (2, '2022-12-01', null, 'This is the twelfth target timeframe with target_id 2', null);
 `;
 
   connection.query(targettimeframesSql, (error, results) => {
