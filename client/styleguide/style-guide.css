@@ -1,0 +1,120 @@
+@import url('color-palette.css');
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--body-font-size);
+  line-height: var(--body-line-height);
+  color: var(--body-color);
+  background-color: #fff;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1, h2, h3 {
+  font-family: var(--heading-font);
+  font-weight: var(--heading-font-weight);
+  color: var(--heading-color);
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: var(--h1-font-size);
+}
+
+h2 {
+  font-size: var(--h2-font-size);
+}
+
+h3 {
+  font-size: var(--h3-font-size);
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  border-bottom: 2px solid var(--link-border-color);
+  transition: border-bottom 0.2s ease-in-out;
+}
+
+a:hover {
+  border-bottom: 2px solid var(--link-hover-border-color);
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem;
+}
+
+.group-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--deep-navy-blue);
+  margin-bottom: 1rem;
+}
+
+.color-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 250px;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+
+.color-box {
+  width: 100%;
+  height: 150px;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.color-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--deep-navy-blue);
+}
+
+.color-description {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: var(--steel-gray);
+  text-align: center;
+}
+
+.color-code {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--steel-gray);
+}
+
+.instructions {
+  font-size: 1.2rem;
+  margin: 2rem 0;
+  color: var(--deep-navy-blue);
+  text-align: center;
+}

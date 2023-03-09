@@ -1,0 +1,35 @@
+/* Fonts */
+:root {
+    --font-family: 'Open Sans', sans-serif;
+    --heading-font: 'Montserrat', sans-serif;
+    --base-font-size: 16px;
+  }
+  
+  /* Colors */
+  :root {
+    --deep-navy-blue: #25395e;
+    --steel-gray: #7f8c8d;
+    --olive-green: #859c6b;
+    --slate-blue: #6c7a99;
+    --light-gray: #e0e0e0;
+    --positive: #2ecc71;
+    --negative: #e74c3c;
+    --warning: #f1c40f;
+  }
+  
+  /* Typography */
+  :root {
+    --h1-font-size: 2.5rem;
+    --h2-font-size: 2rem;
+    --h3-font-size: 1.5rem;
+    --heading-font-weight: bold;
+    --body-font-size: var(--base-font-size);
+    --body-line-height: 1.5;
+    --body-color: var(--steel-gray);
+    --heading-color: var(--deep-navy-blue);
+    --link-color: var(--slate-blue);
+    --link-hover-color: var(--deep-navy-blue);
+    --link-border-color: var(--slate-blue);
+    --link-hover-border-color: var(--deep-navy-blue);
+  }
+  
