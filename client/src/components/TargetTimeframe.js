@@ -22,22 +22,22 @@ const TargetTimeframe = ({ targetTimeframeData }) => {
         </thead>
         <tbody>
           {targetTimeframeData.map((item, index) => {
-            const suunniteltuDate = new Date(item.plannedDate);
+            const suunniteltuDate = new Date(item.planned_date);
             let suunniteltuCellClass = '';
 
-            if (suunniteltuDate < currentDate && !item.actualDate) {
+            if (suunniteltuDate < currentDate && !item.actual_date) {
               suunniteltuCellClass = 'highlighted-date';
             }
 
             return (
-              <tr key={item.target}>
-                <td>{index === 0 ? <Link to="/inspection-plan">Tarkastussuunnitelma</Link> : item.target}</td>
+              <tr key={item.id}>
+                <td>{index === 0 ? <Link to="/inspection-plan">Tarkastussuunnitelma</Link> : item.target_id}</td>
                 <td className={suunniteltuCellClass}>
-                  <DatePicker selected={new Date(item.plannedDate)} />
+                  <DatePicker selected={new Date(item.planned_date)} />
                 </td>
                 <td>
                   <DatePicker
-                    selected={item.actualDate ? new Date(item.actualDate) : null}
+                    selected={item.actual_date ? new Date(item.actual_date) : null}
                   />
                 </td>
                 <td>{item.comments}</td>
@@ -45,7 +45,7 @@ const TargetTimeframe = ({ targetTimeframeData }) => {
                   {index === 0 ? (
                     <Link to="/inspection-plan">Linkki tarkastussuunnitelmaan</Link>
                   ) : (
-                    <a href={item.documentLink}>{item.documentLink}</a>
+                    <a href={item.document_id}>{item.document_id}</a>
                   )}</td>
               </tr>
             );
