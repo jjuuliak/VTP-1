@@ -11,26 +11,30 @@ const DataContainer = () => {
   const [targetTimeframeData, setTargetTimeframeData] = useState([]);
 
   useEffect(() => {
-    fetch('https://api.example.com/inspections')
+    fetch('http://localhost:8080/api/targettimeframes')
+      .then((response) => response.json())
+      .then((data) => setTargetTimeframeData(data));
+    fetch('http://localhost:8080/api/inspections')
       .then((response) => response.json())
       .then((data) => setInspectionData(data));
     fetch('http://localhost:8080/api/documents')
       .then((response) => response.json())
       .then((data) => setLatestDocuments(data));
-    fetch('https://api.example.com/scheduling')
+    fetch('http://localhost:8080/api/scheduling')
       .then((response) => response.json())
       .then((data) => setSchedulingData(data));
-    fetch('https://api.example.com/target-timeframe')
-      .then((response) => response.json())
-      .then((data) => setTargetTimeframeData(data));
   }, []);
+
+  const handleSchedulingDataUpdate = (data) => {
+    setSchedulingData(data);
+  };
 
   return (
     <>
       <TargetTimeframe targetTimeframeData={targetTimeframeData} />
       <InspectionInformation inspectionData={inspectionData} />
       <LatestDocuments latestDocuments={latestDocuments} />
-      <Scheduling schedulingData={schedulingData} />
+      <Scheduling schedulingData={schedulingData} setSchedulingData={handleSchedulingDataUpdate} />
     </>
   );
 };

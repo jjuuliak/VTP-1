@@ -1,33 +1,8 @@
 import React, { useState } from 'react';
 import './Scheduling.css';
 
-const Scheduling = () => {
-  const [rows, setRows] = useState([
-    {
-      id: 1,
-      event: 'Laskutusaineisto',
-      person: 'Kaisa',
-      week: '1'
-    },
-    {
-      id: 2,
-      event: 'Palaveri',
-      person: 'Matti',
-      week: '3'
-    },
-    {
-      id: 3,
-      event: 'Tapaaminen',
-      person: 'Jaana',
-      week: '2'
-    },
-    {
-      id: 4,
-      event: 'Koulutus',
-      person: 'Hanna',
-      week: '1'
-    }
-  ]);
+const Scheduling = ({ events, setEvents }) => {
+  const [rows, setRows] = useState(events || []);
 
   const headers = ['vko 1', 'vko 2', 'vko 3'];
 
@@ -63,6 +38,10 @@ const Scheduling = () => {
     setShowForm(false);
   };
 
+  const handleEventsUpdate = () => {
+    setEvents(rows);
+  };
+
   return (
     <div className="scheduling-container">
       <h2>Aikataulutus</h2>
@@ -74,17 +53,19 @@ const Scheduling = () => {
             ))}
           </tr>
         </thead>
-        <tbody>
-        {rows.map(row => (
-          <tr key={row.id}>
-            {[1, 2, 3].map((week) => (
-              <td key={week}>
-                {row.week === week.toString() ? row.event : ''}
-              </td>
+        {rows.length ? (
+          <tbody>
+            {rows.map((row) => (
+              <tr key={row.id}>
+                {[1, 2, 3].map((week) => (
+                  <td key={week}>
+                    {row.week === week.toString() ? row.event : ''}
+                  </td>
+                ))}
+              </tr>
             ))}
-          </tr>
-        ))}
-        </tbody>
+          </tbody>
+        ) : null}
       </table>
       <button className="scheduling-button" onClick={() => setShowForm(!showForm)}>
         Lisää tapahtuma
@@ -103,7 +84,7 @@ const Scheduling = () => {
             Viikko:
             <input type="text" name="week" value={newEvent.week} onChange={handleFormChange} />
           </label>
-          <button type="submit">Tallenna</button>
+          <button type="submit" onClick={handleEventsUpdate}>Tallenna</button>
         </form>
       )}
     </div>

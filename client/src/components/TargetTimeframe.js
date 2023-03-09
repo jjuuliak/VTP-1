@@ -4,45 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Link } from 'react-router-dom';
 
-const TargetTimeframe = () => {
-  const data = [
-    {
-      target: <Link to="/inspection-plan">Tarkastussuunnitelma</Link>,
-      plannedDate: '2023-02-21',
-      actualDate: '2023-02-23',
-      comments: '',
-      documentLink: <Link to="/inspection-plan">Linkki tarkastussuunnitelmaan</Link>
-    },
-    {
-      target: 'Increase sales',
-      plannedDate: '2023-01-01',
-      actualDate: '2023-03-31',
-      comments: 'Some comments here',
-      documentLink: 'https://example.com'
-    },
-    {
-      target: 'Launch new product',
-      plannedDate: '2023-02-01',
-      actualDate: '',
-      comments: 'Some comments here',
-      documentLink: 'https://example.com'
-    },
-    {
-      target: 'Improve customer satisfaction',
-      plannedDate: '2023-01-15',
-      actualDate: '2023-12-31',
-      comments: 'Some comments here',
-      documentLink: 'https://example.com'
-    },
-    {
-      target: 'Expand into new markets',
-      plannedDate: '2023-03-01',
-      actualDate: '2024-01-31',
-      comments: 'Some comments here',
-      documentLink: 'https://example.com'
-    }
-  ];
-
+const TargetTimeframe = ({ targetTimeframeData }) => {
   const currentDate = new Date();
 
   return (
@@ -59,7 +21,7 @@ const TargetTimeframe = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item) => {
+          {targetTimeframeData.map((item, index) => {
             const suunniteltuDate = new Date(item.plannedDate);
             let suunniteltuCellClass = '';
 
@@ -69,7 +31,7 @@ const TargetTimeframe = () => {
 
             return (
               <tr key={item.target}>
-                <td>{item.target}</td>
+                <td>{index === 0 ? <Link to="/inspection-plan">Tarkastussuunnitelma</Link> : item.target}</td>
                 <td className={suunniteltuCellClass}>
                   <DatePicker selected={new Date(item.plannedDate)} />
                 </td>
@@ -79,7 +41,12 @@ const TargetTimeframe = () => {
                   />
                 </td>
                 <td>{item.comments}</td>
-                <td>{item.documentLink}</td>
+                <td>
+                  {index === 0 ? (
+                    <Link to="/inspection-plan">Linkki tarkastussuunnitelmaan</Link>
+                  ) : (
+                    <a href={item.documentLink}>{item.documentLink}</a>
+                  )}</td>
               </tr>
             );
           })}
