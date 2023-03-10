@@ -76,3 +76,10 @@ CREATE TABLE IF NOT EXISTS inspections (
 
 INSERT INTO inspections (subject_id, subject_of_inspection, issue, risk_area, official_duration_period, total_duration_period, participants, responsible_inspector, office, department, subject_contact_information, inspection_contact_person)
 VALUES (1, 'Valvontakohde 1', 'Aihe 1', 'Riskialue 1', '2023-01-01-2023-01-31', '2023-01-01-2023-02-15', 'Osallistuja 1, Osallistuja 2', 'Vastuuvalvoja 1', 'Toimisto 1', 'Osasto 1', 'Yhteystiedot 1', 'Yhteyshenkilö 1');
+
+CREATE TABLE IF NOT EXISTS scheduling (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  event TEXT NOT NULL,
+  person TEXT NOT NULL,
+  week INT NOT NULL
+);
