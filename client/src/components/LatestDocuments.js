@@ -2,6 +2,18 @@ import React from 'react';
 import './LatestDocuments.css';
 
 const LatestDocuments = ({ latestDocuments }) => {
+  const formatDate = (date) => {
+    const options = {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    };
+    const formattedDate = new Date(date).toLocaleDateString('fi-FI', options);
+    return formattedDate;
+  };
+
   return (
     <div className="latest-documents">
       <h2>Latest Documents</h2>
@@ -18,7 +30,7 @@ const LatestDocuments = ({ latestDocuments }) => {
             <tr key={document.id}>
               <td>{document.title}</td>
               <td>{document.handler}</td>
-              <td>{document.modified}</td>
+              <td>{formatDate(document.modified)}</td>
             </tr>
           ))}
         </tbody>
