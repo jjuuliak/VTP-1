@@ -59,25 +59,27 @@ function initializeDatabase() {
     CREATE TABLE IF NOT EXISTS targettimeframes (
       id INT AUTO_INCREMENT PRIMARY KEY,
       target_id INT NOT NULL,
+      goal VARCHAR(255) NOT NULL,
       planned_date DATE NOT NULL,
       actual_date DATE DEFAULT NULL,
       comments VARCHAR(255) DEFAULT NULL,
-      document_id INT DEFAULT NULL
+      document_id INT DEFAULT NULL,
+      link_text VARCHAR(255) DEFAULT NULL
     );
 
-    INSERT INTO targettimeframes (target_id, planned_date, actual_date, comments, document_id) VALUES
-      (1, '2022-01-01', null, 'This is the first target timeframe', null),
-      (2, '2022-02-01', '2022-02-02', 'This is the second target timeframe', null),
-      (3, '2022-03-01', '2022-03-05', 'This is the third target timeframe', null),
-      (4, '2022-04-01', '2022-04-03', 'This is the fourth target timeframe', null),
-      (5, '2022-05-01', '2022-05-02', 'This is the fifth target timeframe', null),
-      (6, '2022-06-01', null, 'This is the sixth target timeframe', null),
-      (7, '2022-07-01', null, 'This is the seventh target timeframe', null),
-      (8, '2022-08-01', '2022-08-03', 'This is the eighth target timeframe', null),
-      (9, '2022-09-01', '2022-09-04', 'This is the ninth target timeframe', null),
-      (10, '2022-10-01', '2022-10-02', 'This is the tenth target timeframe', null),
-      (2, '2022-11-01', null, 'This is the eleventh target timeframe with target_id 2', null),
-      (2, '2022-12-01', null, 'This is the twelfth target timeframe with target_id 2', null);
+    INSERT INTO targettimeframes (target_id, goal, planned_date, actual_date, comments, document_id, link_text) VALUES
+      (1, 'Goal A', '2022-01-01', null, 'This is the first target timeframe', null, null),
+      (2, 'Goal B', '2022-02-01', '2022-02-02', 'This is the second target timeframe', null, null),
+      (3, 'Goal C', '2022-03-01', '2022-03-05', 'This is the third target timeframe', null, null),
+      (4, 'Goal D', '2022-04-01', '2022-04-03', 'This is the fourth target timeframe', null, null),
+      (5, 'Goal E', '2022-05-01', '2022-05-02', 'This is the fifth target timeframe', null, null),
+      (6, 'Goal F', '2022-06-01', null, 'This is the sixth target timeframe', null, null),
+      (7, 'Goal G', '2022-07-01', null, 'This is the seventh target timeframe', null, null),
+      (8, 'Goal H', '2022-08-01', '2022-08-03', 'This is the eighth target timeframe', null, null),
+      (9, 'Goal I', '2022-09-01', '2022-09-04', 'This is the ninth target timeframe', null, null),
+      (10, 'Goal J', '2022-10-01', '2022-10-02', 'This is the tenth target timeframe', null, null),
+      (2, 'Goal K', '2022-11-01', null, 'This is the eleventh target timeframe with target_id 2', null, null),
+      (2, 'Goal L', '2022-12-01', null, 'This is the twelfth target timeframe with target_id 2', null, null);
 `;
 
   connection.query(targettimeframesSql, (error, results) => {
