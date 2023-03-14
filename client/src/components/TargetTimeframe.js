@@ -31,7 +31,7 @@ const TargetTimeframe = ({ targetTimeframeData }) => {
 
             return (
               <tr key={item.id}>
-                <td>{index === 0 ? <Link to="/inspection-plan">Tarkastussuunnitelma</Link> : item.target_id}</td>
+                <td>{index === 0 ? <Link to="/inspection-plan">Tarkastussuunnitelma</Link> : item.goal}</td>
                 <td className={suunniteltuCellClass}>
                   <DatePicker selected={new Date(item.planned_date)} />
                 </td>
