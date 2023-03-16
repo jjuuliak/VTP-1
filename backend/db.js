@@ -82,6 +82,36 @@ function initializeDatabase() {
       (2, 'Goal L', '2022-12-01', null, 'This is the twelfth target timeframe with target_id 2', null, null);
 `;
 
+  const inspectionsSql = `
+    CREATE TABLE IF NOT EXISTS inspections (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      subject_id INT NOT NULL,
+      subject_of_inspection VARCHAR(255),
+      issue VARCHAR(255),
+      risk_area VARCHAR(255),
+      official_duration_period VARCHAR(255),
+      total_duration_period VARCHAR(255),
+      participants VARCHAR(255),
+      responsible_inspector VARCHAR(255),
+      office VARCHAR(255),
+      department VARCHAR(255),
+      subject_contact_information VARCHAR(255),
+      inspection_contact_person VARCHAR(255)
+    );
+
+    INSERT INTO inspections (subject_id, subject_of_inspection, issue, risk_area, official_duration_period, total_duration_period, participants, responsible_inspector, office, department, subject_contact_information, inspection_contact_person)
+    VALUES (1, 'Valvontakohde 1', 'Aihe 1', 'Riskialue 1', '2023-01-01-2023-01-31', '2023-01-01-2023-02-15', 'Osallistuja 1, Osallistuja 2', 'Vastuuvalvoja 1', 'Toimisto 1', 'Osasto 1', 'Yhteystiedot 1', 'Yhteyshenkilö 1');
+`;
+
+  connection.query(inspectionsSql, (error, results) => {
+    if (error) {
+      console.error('Error initializing inspections table:', error);
+    } else {
+      console.log('Inspections table initialized');
+    }
+  });
+
+
   connection.query(targettimeframesSql, (error, results) => {
     if (error) {
       console.error('Error initializing targettimeframes table:', error);
