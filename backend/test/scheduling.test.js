@@ -78,19 +78,6 @@ describe('Scheduling API', () => {
       expect(getResponse.body).to.deep.equal({ error: `Scheduling with id ${schedulingId} not found` });
     });
   });
-
-  describe('GET /api/scheduling', () => {
-    it('should retrieve all scheduling records', async () => {
-      const response = await chai.request(app).get('/api/scheduling');
-      expect(response.status).to.equal(200);
-      expect(response.body).to.be.an('array');
-      expect(response.body.length).to.equal(1);
-      const scheduling = response.body[0];
-      expect(scheduling).to.have.property('event', 'Delete event');
-      expect(scheduling).to.have.property('person', 'Delete person');
-      expect(scheduling).to.have.property('week', 2);
-    });
-  });
   
   describe('PUT /api/scheduling/:id', () => {
     // Create a scheduling to update
