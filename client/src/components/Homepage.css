@@ -1,0 +1,18 @@
+.homepage-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+  }
+  
+  .inspections-list {
+    width: 30%;
+    padding: 1rem;
+    border-right: 1px solid #ccc;
+  }
+  
+  .inspection-plans {
+    width: 60%;
+    padding: 1rem;
+  }
+  

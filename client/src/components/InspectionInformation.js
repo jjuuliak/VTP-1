@@ -2,10 +2,8 @@
 import React from 'react';
 import './InspectionInformation.css';
 
-const InspectionInformation = ({ data }) => {
-  if (!data) {
-    data = {};
-  }
+const InspectionInformation = ({ inspectionData }) => {
+  const data = inspectionData || {};
   
   return (
     <div className="inspection-information">

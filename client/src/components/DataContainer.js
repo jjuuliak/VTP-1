@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import InspectionInformation from './InspectionInformation';
 import LatestDocuments from './LatestDocuments';
 import Scheduling from './Scheduling';
 import TargetTimeframe from './TargetTimeframe';
 
 const DataContainer = () => {
+  const { inspectionId } = useParams();
   const [inspectionData, setInspectionData] = useState([]);
   const [latestDocuments, setLatestDocuments] = useState([]);
   const [schedulingData, setSchedulingData] = useState([]);
@@ -14,7 +16,7 @@ const DataContainer = () => {
     fetch('http://localhost:8080/api/targettimeframes')
       .then((response) => response.json())
       .then((data) => setTargetTimeframeData(data));
-    fetch('http://localhost:8080/api/inspections')
+    fetch(`http://localhost:8080/api/inspections/${inspectionId}`)
       .then((response) => response.json())
       .then((data) => setInspectionData(data));
     fetch('http://localhost:8080/api/documents')
@@ -23,7 +25,7 @@ const DataContainer = () => {
     fetch('http://localhost:8080/api/scheduling')
       .then((response) => response.json())
       .then((data) => setSchedulingData(data));
-  }, []);
+  }, [inspectionId]);
 
   const handleSchedulingDataUpdate = (data) => {
     setSchedulingData(data);
