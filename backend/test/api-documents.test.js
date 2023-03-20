@@ -10,6 +10,17 @@ describe('/api/documents', () => {
   before(async () => {
     // Clear the documents table before running tests
     await db.query('DELETE FROM documents');
+
+    // Insert test data
+    const testDocuments = [
+      { title: 'Test Document 1', handler: 'John Doe', modified: '2022-01-01 12:00:00' },
+      { title: 'Test Document 2', handler: 'Jane Doe', modified: '2022-02-01 12:00:00' },
+      { title: 'Test Document 3', handler: 'John Smith', modified: '2022-03-01 12:00:00' },
+    ];
+  
+    for (const doc of testDocuments) {
+      await db.query('INSERT INTO documents SET ?', doc);
+    }
   });
 
   describe('POST /', () => {
