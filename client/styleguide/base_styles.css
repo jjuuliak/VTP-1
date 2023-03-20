@@ -1,0 +1,111 @@
+/* Color Palette */
+:root {
+    --primary-blue: #2E5A9A;
+    --secondary-blue: #7896C1;
+    --accent-grey: #A1AAB3;
+    --light-background: #F3F4F6;
+    --dark-grey-text: #2D2F32;
+    --medium-grey-text: #74787C;
+    --alert-green: #3C9465;
+    --alert-red: #C0392B;
+  }
+
+  /* Typography */
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--dark-grey-text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', Arial, sans-serif;
+  font-weight: 500;
+  color: var(--primary-blue);
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+p {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+a {
+  color: var(--primary-blue);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover,
+a:focus {
+  color: var(--secondary-blue);
+}
+
+ul, ol {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding-left: 1.5em;
+}
+
+li {
+  margin-bottom: 0.5em;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+table th, table td {
+  padding: 12px 15px;
+  text-align: left;
+  border: 1px solid var(--accent-grey);
+}
+
+table thead th {
+  background-color: var(--secondary-blue);
+  color: white;
+  font-weight: bold;
+}
+
+table tbody tr:nth-child(odd) {
+  background-color: var(--light-background);
+}
+
+table tbody tr:nth-child(even) {
+  background-color: white;
+}
+
+table tbody tr:hover {
+  background-color: var(--accent-grey);
+  transition: background-color 0.2s;
+}
