@@ -3,21 +3,23 @@ import './TargetTimeframe.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const TargetTimeframe = ({ targetTimeframeData }) => {
   const currentDate = new Date();
+  const { t } = useTranslation();
 
   return (
     <div className="target-timeframe-container">
-      <h2>Tavoiteaikataulu</h2>
+      <h2>{t('targetTimeframeTitle')}</h2>
       <table className="target-timeframe-table">
         <thead>
           <tr>
-            <th>Tavoite</th>
-            <th>Suunniteltu pvm</th>
-            <th>Toteutunut pvm</th>
-            <th>Kommentit</th>
-            <th>Linkki valmiseen dokumenttiin</th>
+            <th>{t('target')}</th>
+            <th>{t('plannedDate')}</th>
+            <th>{t('actualDate')}</th>
+            <th>{t('comments')}</th>
+            <th>{t('documentLink')}</th>
           </tr>
         </thead>
         <tbody>
@@ -31,7 +33,7 @@ const TargetTimeframe = ({ targetTimeframeData }) => {
 
             return (
               <tr key={item.id}>
-                <td>{index === 0 ? <Link to="/inspection-plan">Tarkastussuunnitelma</Link> : item.goal}</td>
+                <td>{index === 0 ? <Link to="/inspection-plan">{t('inspectionPlan')}</Link> : item.goal}</td>
                 <td className={suunniteltuCellClass}>
                   <DatePicker selected={new Date(item.planned_date)} />
                 </td>
@@ -43,7 +45,7 @@ const TargetTimeframe = ({ targetTimeframeData }) => {
                 <td>{item.comments}</td>
                 <td>
                   {index === 0 ? (
-                    <Link to="/inspection-plan">Linkki tarkastussuunnitelmaan</Link>
+                    <Link to="/inspection-plan">{t('inspectionPlanLink')}</Link>
                   ) : (
                     <a href={item.document_id}>{item.document_id}</a>
                   )}</td>

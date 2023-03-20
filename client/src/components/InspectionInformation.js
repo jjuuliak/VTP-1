@@ -1,59 +1,60 @@
-// client/src/components/InspectionInformation/InspectionInformation.js
 import React from 'react';
 import './InspectionInformation.css';
+import { useTranslation } from 'react-i18next';
 
 const InspectionInformation = ({ inspectionData }) => {
   const data = inspectionData || {};
+  const { t } = useTranslation();
   
   return (
     <div className="inspection-information">
-      <h2 className="inspection-information-title">Tarkastuksen tiedot</h2>
+      <h2 className="inspection-information-title">{t('inspectionInformationTitle')}</h2>
       <table className="inspection-information-table">
         <thead>
           <tr>
-            <th>Valvonnan kohde</th>
+            <th>{t('subjectOfInspection')}</th>
             <th>{data.subjectOfInspection || ''}</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Aihe</td>
+            <td>{t('issue')}</td>
             <td>{data.issue || ''}</td>
           </tr>
           <tr>
-            <td>Riski-alue</td>
+            <td>{t('riskArea')}</td>
             <td>{data.riskArea || ''}</td>
           </tr>
           <tr>
-            <td>Virallinen kesto</td>
+            <td>{t('officialDuration')}</td>
             <td>{data.officialDuration || ''}</td>
           </tr>
           <tr>
-            <td>Kokonaiskesto</td>
+            <td>{t('totalDuration')}</td>
             <td>{data.totalDuration || ''}</td>
           </tr>
           <tr>
-            <td>Osallistujat</td>
+            <td>{t('participants')}</td>
             <td>{data.participants || ''}</td>
           </tr>
           <tr>
-            <td>Vastuuvalvoja</td>
+            <td>{t('responsibleInspector')}</td>
             <td>{data.responsibleInspector || ''}</td>
           </tr>
           <tr>
-            <td>Toimisto</td>
+            <td>{t('office')}</td>
             <td>{data.office || ''}</td>
           </tr>
           <tr>
-            <td>Osasto</td>
+            <td>{t('department')}</td>
             <td>{data.department || ''}</td>
           </tr>
           <tr>
-            <td>Valvonnan kohteen yhteystiedot</td>
+            <td>{t('subjectContactInformation')}</td>
             <td>{data.subjectContactInformation || ''}</td>
           </tr>
           <tr>
-            <td>Tarkastuksen yhteyshenkilö valvonnan kohteessa</td>
+            <td>{t('inspectionContactPerson')}</td>
             <td>{data.inspectionContactPerson || ''}</td>
           </tr>
         </tbody>

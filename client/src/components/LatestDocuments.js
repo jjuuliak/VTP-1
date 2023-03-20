@@ -1,7 +1,10 @@
 import React from 'react';
 import './LatestDocuments.css';
+import { useTranslation } from 'react-i18next';
 
 const LatestDocuments = ({ latestDocuments }) => {
+  const { t } = useTranslation();
+
   const formatDate = (date) => {
     const options = {
       day: '2-digit',
@@ -16,13 +19,13 @@ const LatestDocuments = ({ latestDocuments }) => {
 
   return (
     <div className="latest-documents">
-      <h2>Latest Documents</h2>
+      <h2>{t('latestDocuments')}</h2>
       <table>
         <thead>
           <tr>
-            <th>Dokumentti</th>
-            <th>Käsittelijä</th>
-            <th>Muokattu</th>
+            <th>{t('document')}</th>
+            <th>{t('handler')}</th>
+            <th>{t('modified')}</th>
           </tr>
         </thead>
         <tbody>
