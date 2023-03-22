@@ -22,14 +22,23 @@ const DataContainer = () => {
     fetch('http://localhost:8080/api/documents')
       .then((response) => response.json())
       .then((data) => setLatestDocuments(data));
-    fetch('http://localhost:8080/api/scheduling')
-      .then((response) => response.json())
-      .then((data) => setSchedulingData(data));
+    fetchSchedulingData();
   }, [inspectionId]);
 
   const handleSchedulingDataUpdate = (data) => {
     setSchedulingData(data);
   };
+
+  const fetchSchedulingData = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/api/scheduling');
+      const data = await response.json();
+      setSchedulingData(data);
+    } catch (error) {
+      console.error('Error fetching scheduling data:', error);
+    }
+  };
+  
 
   return (
     <>

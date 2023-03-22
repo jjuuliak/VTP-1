@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Scheduling.css';
 
 const Scheduling = ({ events, setEvents }) => {
   const [rows, setRows] = useState(events || []);
+
+  useEffect(() => { // Add this useEffect hook
+    setRows(events);
+  }, [events]);
 
   const headers = ['vko 1', 'vko 2', 'vko 3'];
 
