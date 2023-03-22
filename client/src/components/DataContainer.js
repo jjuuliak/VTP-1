@@ -36,7 +36,7 @@ const DataContainer = () => {
       <TargetTimeframe targetTimeframeData={targetTimeframeData} />
       <InspectionInformation inspectionData={inspectionData} />
       <LatestDocuments latestDocuments={latestDocuments} />
-      <Scheduling schedulingData={schedulingData} setSchedulingData={handleSchedulingDataUpdate} />
+      <Scheduling events={schedulingData} setEvents={handleSchedulingDataUpdate} />
     </>
   );
 };
