@@ -50,7 +50,7 @@ const Scheduling = ({ events, setEvents }) => {
       }
   
       // Update the parent component's state with the new scheduling data
-      handleEventsUpdate();
+      setEvents(rows);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -98,7 +98,7 @@ const Scheduling = ({ events, setEvents }) => {
             Viikko:
             <input type="text" name="week" value={newEvent.week} onChange={handleFormChange} />
           </label>
-          <button type="submit" onClick={handleEventsUpdate}>Tallenna</button>
+          <button type="submit" onClick={() => setEvents(rows)}>Tallenna</button>
         </form>
       )}
     </div>
