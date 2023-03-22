@@ -75,9 +75,9 @@ const Scheduling = ({ events, setEvents }) => {
           <tbody>
             {rows.map((row) => (
               <tr key={row.id}>
-                {[1, 2, 3].map((week) => (
-                  <td key={week}>
-                    {row.week === week.toString() ? row.event : ''}
+                {headers.map((header, index) => (
+                  <td key={index}>
+                    {header === `vko ${row.week}` ? row.event : ''}
                   </td>
                 ))}
               </tr>
