@@ -19,28 +19,42 @@ const Scheduling = ({ events, setEvents }) => {
     setNewEvent((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-    setRows((prevState) => [
-      ...prevState,
-      {
-        id: prevState.length + 1,
-        event: newEvent.event,
-        person: newEvent.person,
-        week: newEvent.week
-      }
-    ]);
+    const newRow = {
+      id: rows.length + 1,
+      event: newEvent.event,
+      person: newEvent.person,
+      week: newEvent.week
+    };
+    setRows((prevState) => [...prevState, newRow]);
     setNewEvent({
       event: '',
       person: '',
       week: ''
     });
     setShowForm(false);
-  };
-
-  const handleEventsUpdate = () => {
-    setEvents(rows);
-  };
+  
+    // Add this code to make a POST request to your backend
+    try {
+      const response = await fetch('http://localhost:8080/api/scheduling', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newRow),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to save scheduling data.');
+      }
+  
+      // Update the parent component's state with the new scheduling data
+      handleEventsUpdate();
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };  
 
   return (
     <div className="scheduling-container">
