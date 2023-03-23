@@ -22,5 +22,41 @@
     "comments": "Kommentit",
     "documentLink": "Linkki valmiiseen dokumenttiin",
     "inspectionPlan": "Tarkastussuunnitelma",
-    "inspectionPlanLink": "Linkki tarkastussuunnitelmaan"
+    "inspectionPlanLink": "Linkki tarkastussuunnitelmaan",
+    "nav": {
+        "home": "Kotisivu",
+        "current_inspection": "Nykyisen tarkastuksen nimi",
+        "templates": "Mallipohjat",
+        "finished_documents": "Valmiit dokumentit",
+        "regulation": "Sääntely",
+        "other_instructions": "Muut ohjeet",
+        "tasks": "Tehtävät",
+        "material_provided": "Tarkastuksen kohteen toimittama materiaali",
+        "interviews": "Haastattelut",
+        "enter_observation": "Syötä havainto",
+        "observations_actions": "Havainnot ja toimenpiteet",
+        "final_actions": "Lopputoimet (yhteenveto, työaika, kokonaismerkitys)",
+        "contact": "Yhteydenotot",
+        "qa": "Q & A"
+    },
+    "addObservation": {
+        "addNewObservation": "Lisää uusi havainto",
+        "inspectionID": "Tarkastuksen ID",
+        "observationID": "Havainnon ID",
+        "observationNumber": "Havainnon numero",
+        "title": "Otsikko",
+        "criterion": "Kriteeri",
+        "observation": "Havainto",
+        "reason": "Syy",
+        "impact": "Vaikutus",
+        "significance": "Merkitys",
+        "minorSignificance": "1 - Vähäinen merkitys",
+        "moderateSignificance": "2 - Kohtalainen merkitys",
+        "majorSignificance": "3 - Huomattava merkitys",
+        "extremelyHighSignificance": "4 - Erittäin suuri merkitys",
+        "inspectionMethodsTasks": "Tarkastusmenetelmät ja tehtävät",
+        "cancel": "Peruuta",
+        "add": "Lisää",
+        "saveObservation": "Tallenna havainto"
+    }
 }

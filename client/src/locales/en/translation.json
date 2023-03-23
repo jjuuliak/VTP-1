@@ -22,5 +22,41 @@
     "comments": "Comments",
     "documentLink": "Link to Completed Document",
     "inspectionPlan": "Inspection Plan",
-    "inspectionPlanLink": "Link to Inspection Plan"
+    "inspectionPlanLink": "Link to Inspection Plan",
+    "nav": {
+      "home": "Home",
+      "current_inspection": "The name of the current inspection",
+      "templates": "Templates",
+      "finished_documents": "Finished Documents",
+      "regulation": "Regulation",
+      "other_instructions": "Other instructions",
+      "tasks": "Tasks",
+      "material_provided": "Material provided by the target of the inspection",
+      "interviews": "Interviews",
+      "enter_observation": "Enter an observation",
+      "observations_actions": "Observations and actions",
+      "final_actions": "Final actions (summary, working hours, overall significance)",
+      "contact": "Contact",
+      "qa": "Q & A"
+    },
+    "addObservation": {
+      "addNewObservation": "Add New Observation",
+      "inspectionID": "Inspection ID",
+      "observationID": "Observation ID",
+      "observationNumber": "Observation Number",
+      "title": "Title",
+      "criterion": "Criterion",
+      "observation": "Observation",
+      "reason": "Reason",
+      "impact": "Impact",
+      "significance": "Significance",
+      "minorSignificance": "1 - Minor significance",
+      "moderateSignificance": "2 - Moderate significance",
+      "majorSignificance": "3 - Major significance",
+      "extremelyHighSignificance": "4 - Extremely high significance",
+      "inspectionMethodsTasks": "Inspection Methods and Tasks",
+      "cancel": "Cancel",
+      "add": "Add",
+      "saveObservation": "Save Observation"
+    }
   }  
