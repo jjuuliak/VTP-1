@@ -8,6 +8,11 @@
     --medium-grey-text: #74787C;
     --alert-green: #3C9465;
     --alert-red: #C0392B;
+
+    --container-max-width: 1200px;
+    --container-padding: 1rem;
+    --margin-default: 1rem;
+    --padding-default: 1rem;
   }
 
   /* Typography */
@@ -108,4 +113,8 @@ table tbody tr:nth-child(even) {
 table tbody tr:hover {
   background-color: var(--accent-grey);
   transition: background-color 0.2s;
+}
+
+.icon-color {
+  color: var(--primary-blue);
 }

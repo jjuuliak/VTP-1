@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="base_styles.css">
   <link rel="stylesheet" href="style_guide.css">
+  <script src="https://kit.fontawesome.com/df866671f4.js" crossorigin="anonymous"></script> <!-- AIMIT: Added Fontawesome kit link -->
   <title>Color Palette Style Guide</title>
 </head>
 <body>
@@ -151,6 +152,123 @@
       </table>
     </div>
   </section>
+<!-- ... -->
+
+
+<!-- ... -->
+<section class="layout-whitespace-section">
+  <h2 class="title">Layout and Whitespace</h2>
+  <p class="intro">A well-organized layout with appropriate whitespace ensures easy readability and a clean appearance. The following guidelines and CSS variables can be used to maintain a consistent layout and whitespace throughout the application.</p>
+
+  <div class="typography-example">
+    <h4>Container</h4>
+    <p>The container class can be used to center and set a maximum width for the content:</p>
+    <pre><code>.container {
+max-width: var(--container-max-width);
+margin-left: auto;
+margin-right: auto;
+padding-left: var(--container-padding);
+padding-right: var(--container-padding);
+}
+</code></pre>
+
+    <h4>Margins and Padding</h4>
+    <p>Use the following CSS variables to apply consistent margins and padding:</p>
+    <pre><code>element {
+margin: var(--margin-default);
+padding: var(--padding-default);
+}
+</code></pre>
+
+    <h4>Example Layout</h4>
+    <p>Here's an example layout showcasing the use of the container class and the margin and padding variables:</p>
+
+    <div class="container example-layout">
+      <div class="example-box" style="margin: var(--margin-default); padding: var(--padding-default);">
+        Box 1
+      </div>
+      <div class="example-box" style="margin: var(--margin-default); padding: var(--padding-default);">
+        Box 2
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ... -->
+<!-- ... -->
+<!-- ... -->
+<section class="imagery-icons-section">
+  <h2 class="title">Imagery and Icons</h2>
+  <p class="intro">High-quality images and icons that are relevant to the finance and regulatory industry should be used throughout the application. The application uses Font Awesome as the source for icons. Opt for a minimalist and professional style for icons, and avoid overly complex or intricate designs.</p>
+  
+  <div class="container">
+    <div class="icon-example">
+      <i class="fas fa-coins fa-2x icon-color"></i>
+      <p>Icon 1 - Finance</p>
+    </div>
+    <div class="icon-example">
+      <i class="fas fa-gavel fa-2x icon-color"></i>
+      <p>Icon 2 - Regulation</p>
+    </div>
+    <!-- Add more example icons -->
+    <div class="icon-example">
+      <i class="fas fa-chart-line fa-2x icon-color"></i>
+      <p>Icon 3 - Growth</p>
+    </div>
+    <div class="icon-example">
+      <i class="fas fa-chart-pie fa-2x icon-color"></i>
+      <p>Icon 4 - Analysis</p>
+    </div>
+    <div class="icon-example">
+      <i class="fas fa-balance-scale fa-2x icon-color"></i>
+      <p>Icon 5 - Balance</p>
+    </div>
+    <div class="icon-example">
+      <i class="fas fa-hand-holding-usd fa-2x icon-color"></i>
+      <p>Icon 6 - Investment</p>
+    </div>
+    <div class="icon-example">
+      <i class="fas fa-university fa-2x icon-color"></i>
+      <p>Icon 7 - Bank</p>
+    </div>
+    <div class="icon-example">
+      <i class="fas fa-file-invoice-dollar fa-2x icon-color"></i>
+      <p>Icon 8 - Invoice</p>
+    </div>
+    <div class="icon-example">
+      <i class="fas fa-users fa-2x icon-color"></i>
+      <p>Icon 9 - Clients</p>
+    </div>
+    <div class="icon-example">
+      <i class="fas fa-suitcase fa-2x icon-color"></i>
+      <p>Icon 10 - Business</p>
+    </div>
+  </div>
+</section>
+<!-- ... -->
+<section class="accessibility-section">
+  <h2 class="title">Accessibility</h2>
+  <p>
+    Ensuring that the application is accessible to all users, including those with disabilities, is a priority. Follow these guidelines to maintain accessibility in the application:
+  </p>
+  <ul>
+    <li>Use high-contrast color schemes for easy readability.</li>
+    <li>Provide alt text for all images using the <code>alt</code> attribute.</li>
+    <li>Ensure keyboard navigation for all interactive elements.</li>
+    <li>Use semantic HTML elements to convey structure and meaning.</li>
+    <li>Employ ARIA attributes to improve the accessibility of custom interactive components.</li>
+    <li>Ensure all form controls have associated <code>&lt;label&gt;</code> elements.</li>
+    <li>Make the application responsive to work well on different devices and screen sizes.</li>
+    <li>Regularly test with popular screen readers like JAWS, NVDA, or VoiceOver.</li>
+  </ul>
+</section>
+<!-- ... -->
+
+<!-- ... -->
+
+<!-- ... -->
+
+
+
 
 
 
