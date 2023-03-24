@@ -57,6 +57,7 @@
         "inspectionMethodsTasks": "Tarkastusmenetelmät ja tehtävät",
         "cancel": "Peruuta",
         "add": "Lisää",
-        "saveObservation": "Tallenna havainto"
+        "saveObservation": "Tallenna havainto",
+        "newCriterionContent": "Uuden kriteerin sisältö"
     }
 }
