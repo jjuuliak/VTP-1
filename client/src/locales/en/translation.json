@@ -68,5 +68,9 @@
       "week": "Week",
       "save": "Save",
       "cancel": "Cancel"
+    },
+    "language": {
+      "english": "English",
+      "finnish": "Finnish"
     }
   }  

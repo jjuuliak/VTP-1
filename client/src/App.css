@@ -109,3 +109,13 @@ table tbody tr:hover {
 background-color: var(--accent-grey);
 transition: background-color 0.2s;
 }
+
+.app-container {
+  display: flex;
+  height: 100vh;
+}
+
+.main-container {
+  flex: 1;
+  overflow: auto;
+}
