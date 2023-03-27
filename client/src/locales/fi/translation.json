@@ -68,5 +68,9 @@
         "week": "Viikko",
         "save": "Tallenna",
         "cancel": "Peruuta"
+    },
+    "language": {
+        "english": "Englanti",
+        "finnish": "Suomi"
     }
 }

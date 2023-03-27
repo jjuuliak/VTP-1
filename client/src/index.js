@@ -8,7 +8,7 @@ import { I18nextProvider } from 'react-i18next';
 import en from './locales/en/translation.json';
 import fi from './locales/fi/translation.json';
 
-i18next.init({
+const i18n = i18next.createInstance({
   interpolation: { escapeValue: false },
   lng: 'fi', // default language
   resources: {
@@ -17,10 +17,12 @@ i18next.init({
   },
 });
 
+i18n.init();
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <I18nextProvider i18n={i18next}>
+    <I18nextProvider i18n={i18n}>
       <App />
     </I18nextProvider>
   </React.StrictMode>
