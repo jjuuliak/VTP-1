@@ -59,5 +59,14 @@
       "add": "Add",
       "saveObservation": "Save Observation",
       "newCriterionContent": "New Criterion Content"
+    },
+    "scheduling": {
+      "title": "Scheduling",
+      "addColumn": "Add Event",
+      "event": "Event",
+      "person": "Person",
+      "week": "Week",
+      "save": "Save",
+      "cancel": "Cancel"
     }
   }  

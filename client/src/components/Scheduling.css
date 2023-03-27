@@ -12,34 +12,6 @@
   margin-bottom: 20px;
 }
 
-.scheduling-table {
-  border-collapse: collapse;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.scheduling-table th,
-.scheduling-table td {
-  padding: 5px;
-  border: 1px solid black;
-}
-
-.scheduling-table th {
-  background-color: #444;
-}
-
-.scheduling-table tr:nth-child(odd) {
-  background-color: #f8f8f8;
-}
-
-.scheduling-table tr:nth-child(even) {
-  background-color: white;
-}
-
-.scheduling-table tr:hover {
-  background-color: #ddd;
-}
-
 .scheduling-button {
   background-color: #f8f8f8;
   color: black;
@@ -57,4 +29,46 @@
 
 .scheduling-button:before {
   content: "< ";
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+}
+
+.scheduling-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.scheduling-form label {
+  margin-bottom: 1rem;
+}
+
+.scheduling-form input {
+  margin-top: 0.5rem;
+}
+
+.scheduling-form button {
+  margin-top: 1rem;
+}
+
+.scheduling-form button[type="submit"] {
+  margin-right: 1rem;
 }

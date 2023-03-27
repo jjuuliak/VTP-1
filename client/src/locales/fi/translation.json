@@ -59,5 +59,14 @@
         "add": "Lisää",
         "saveObservation": "Tallenna havainto",
         "newCriterionContent": "Uuden kriteerin sisältö"
+    },
+    "scheduling": {
+        "title": "Aikataulutus",
+        "addColumn": "Lisää tapahtuma",
+        "event": "Tapahtuma",
+        "person": "Henkilö",
+        "week": "Viikko",
+        "save": "Tallenna",
+        "cancel": "Peruuta"
     }
 }
