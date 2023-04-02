@@ -72,5 +72,40 @@
     "language": {
         "english": "Englanti",
         "finnish": "Suomi"
-    }
+    },
+    "tasks": {
+        "commonMethodsAndTasks": "Yleisimmät takrastumenetelmät ja tehtävät",
+        "addNewTask": "Lisää tehtävä",
+        "keyInspectionSteps": "Keskeisimmät tarkastuksen vaiheet",
+        "addDialogTitle": "Lisää uusi tehtävä",
+        "taskId": "Tehtävä ID",
+        "status": "Status",
+        "methods": "Tarkastusmenetelmät ja tehtävät",
+        "startDate": "Alkupvm",
+        "endDate": "Loppupvm",
+        "comments": "Kommentit",
+        "materialLink": "Valvonnan kohteen toimittama materiaali (lisää linkki)",
+        "workpapersLink": "Työpaperit (lisää linkki)",
+        "responsible": "Vastuuhenkilö",
+        "notes": "Muistiinpanot",
+        "cancel": "Peruuta",
+        "add": "Lisää",
+        "topicArea": "Aihealue",
+        "responsiblePerson": "Vastuuhenkilö(t)",
+        "criteria": "Kriteeri(t)",
+        "materialFromSubject": "Valvonnan kohteen materiaali",
+        "methodsAndTasks": "Tarkastusmenetelmät ja tehtävät",
+        "action": "Toiminto",
+        "link": "Linkki",
+        "closeTask": "Sulje tehtävä"
+      },
+      "steps": {
+        "addDialogTitle": "Lisää uusi vaihe",
+        "phase": "Vaiheistus",
+        "events": "Tapahtumat",
+        "date": "Ajankohta",
+        "participants": "Osallistujat",
+        "cancel": "Peruuta",
+        "add": "Lisää"
+      }
 }

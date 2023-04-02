@@ -72,5 +72,40 @@
     "language": {
       "english": "English",
       "finnish": "Finnish"
+    },
+    "tasks": {
+      "commonMethodsAndTasks": "Common methods and tasks",
+      "addNewTask": "Add task",
+      "keyInspectionSteps": "Key inspection steps",
+      "addDialogTitle": "Add New Task",
+      "taskId": "Task ID",
+      "status": "Status",
+      "methods": "Inspection Methods and Tasks",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "comments": "Comments",
+      "materialLink": "Material provided by the audited entity (add link)",
+      "workpapersLink": "Workpapers (add link)",
+      "responsible": "Responsible Person",
+      "notes": "Notes",
+      "cancel": "Cancel",
+      "add": "Add",
+      "topicArea": "Topic Area",
+      "responsiblePerson": "Responsible Person(s)",
+      "criteria": "Criteria",
+      "materialFromSubject": "Material from the subject of control",
+      "methodsAndTasks": "Methods and tasks",
+      "action": "Action",
+      "link": "Link",
+      "closeTask": "Close task"
+    },
+    "steps": {
+      "addDialogTitle": "Add New Step",
+      "phase": "Phase",
+      "events": "Events",
+      "date": "Date",
+      "participants": "Participants",
+      "cancel": "Cancel",
+      "add": "Add"
     }
   }  

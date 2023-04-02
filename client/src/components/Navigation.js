@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AddObservationForm from "./AddObservationForm";
 import { useTranslation } from "react-i18next";
+import { Link } from 'react-router-dom';
 import './Navigation.css';
 
 const Navigation = () => {
@@ -45,7 +46,9 @@ const Navigation = () => {
             <a href="#" className="nav-link">{t("nav.other_instructions")}</a>
           </li>
           <li className="nav-item">
-            <a href="#" className="nav-link">{t("nav.tasks")}</a>
+            <Link to="/tasks" className="nav-link">
+              {t("nav.tasks")}
+            </Link>
           </li>
           <li className="nav-item">
             <a href="#" className="nav-link">{t("nav.material_provided")}</a>
