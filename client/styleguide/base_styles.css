@@ -71,6 +71,17 @@ a:focus {
   color: var(--secondary-blue);
 }
 
+a.list-link {
+  color: var(--dark-grey-text);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a.list-link:hover,
+a.list-link:focus {
+  color: var(--primary-blue);
+}
+
 ul, ol {
   margin-top: 1em;
   margin-bottom: 1em;

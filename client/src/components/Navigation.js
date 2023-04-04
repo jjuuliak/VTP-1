@@ -2,7 +2,113 @@ import React, { useState } from 'react';
 import AddObservationForm from "./AddObservationForm";
 import { useTranslation } from "react-i18next";
 import { Link } from 'react-router-dom';
-import './Navigation.css';
+import styled from 'styled-components';
+
+const Navbar = styled.nav`
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50px;
+  background-color: white;
+  transition: all 0.3s ease-in-out;
+  padding-left: var(--container-padding); // Add this line
+  padding-right: var(--container-padding); // Add this line
+
+  &.open {
+    width: 300px;
+    transition: all 0.3s ease-in-out;
+  }
+`;
+
+const MenuIcon = styled.button`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+
+  span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    margin: 3px 0;
+    background-color: var(--dark-grey-text);
+    transition: all 0.3s ease-in-out;
+  }
+
+  &.open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  &.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  &.open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+`;
+
+const NavbarNav = styled.div`
+  position: relative;
+  top: 50px;
+  right: 0;
+  width: 100%;
+  max-height: 0;
+  overflow: auto;
+  transition: all 0.3s ease-in-out;
+
+  &.open {
+    max-height: 100%;
+    transition: all 0.3s ease-in-out;
+  }
+`;
+
+const NavList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`;
+
+const NavItem = styled.li`
+  margin-bottom: 10px;
+`;
+
+const NavLink = styled(Link)`
+  color: var(--dark-grey-text);
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+  white-space: normal;
+  overflow-wrap: break-word;
+
+  &:hover {
+    background-color: var(--accent-grey);
+  }
+`;
+
+const LanguageSelector = styled.select`
+  border: none;
+  background-color: transparent;
+  color: var(--dark-grey-text);
+  cursor: pointer;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    color: var(--primary-blue);
+  }
+`;
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,61 +125,61 @@ const Navigation = () => {
   };
 
   return (
-    <nav className={`navbar ${isOpen ? 'open' : ''}`}>
-      <button className={`menu-icon ${isOpen ? 'open' : ''}`} onClick={() => setIsOpen(!isOpen)}>
+    <Navbar className={`navbar ${isOpen ? 'open' : ''}`}>
+      <MenuIcon className={`menu-icon ${isOpen ? 'open' : ''}`} onClick={() => setIsOpen(!isOpen)}>
         <span></span>
         <span></span>
         <span></span>
-      </button>
-      <div className={`navbar-nav ${isOpen ? 'open' : ''}`}>
-        <ul>
-          <li className="nav-item">
+      </MenuIcon>
+      <NavbarNav className={`navbar-nav ${isOpen ? 'open' : ''}`}>
+        <NavList>
+          <NavItem className="nav-item">
             <a href="#" className="nav-link">{t("nav.home")}</a>
-          </li>
-          <li className="nav-item">
+          </NavItem>
+          <NavItem className="nav-item">
             <a href="#" className="nav-link">{t("nav.current_inspection")}</a>
-          </li>
-          <li className="nav-item">
+          </NavItem>
+          <NavItem className="nav-item">
             <a href="#" className="nav-link">{t("nav.templates")}</a>
-          </li>
-          <li className="nav-item">
+          </NavItem>
+          <NavItem className="nav-item">
             <a href="#" className="nav-link">{t("nav.finished_documents")}</a>
-          </li>
-          <li className="nav-item">
+          </NavItem>
+          <NavItem className="nav-item">
             <a href="#" className="nav-link">{t("nav.regulation")}</a>
-          </li>
-          <li className="nav-item">
+          </NavItem>
+          <NavItem className="nav-item">
             <a href="#" className="nav-link">{t("nav.other_instructions")}</a>
-          </li>
-          <li className="nav-item">
+          </NavItem>
+          <NavItem className="nav-item">
             <Link to="/tasks" className="nav-link">
               {t("nav.tasks")}
             </Link>
-          </li>
-          <li className="nav-item">
+          </NavItem>
+          <NavItem className="nav-item">
             <a href="#" className="nav-link">{t("nav.material_provided")}</a>
-          </li>
-          <li className="nav-item">
+          </NavItem>
+          <NavItem className="nav-item">
             <a href="#" className="nav-link">{t("nav.interviews")}</a>
-          </li>
-          <li className="nav-item">
+          </NavItem>
+          <NavItem className="nav-item">
             <a href="#" className="nav-link" onClick={() => setIsFormOpen(true)}>
               {t("nav.enter_observation")}
             </a>
-          </li>
-          <li className="nav-item">
+          </NavItem>
+          <NavItem className="nav-item">
             <a href="#" className="nav-link">{t("nav.observations_actions")}</a>
-          </li>
-          <li className="nav-item">
+          </NavItem>
+          <NavItem className="nav-item">
             <a href="#" className="nav-link">{t("nav.final_actions")}</a>
-          </li>
-          <li className="nav-item">
+          </NavItem>
+          <NavItem className="nav-item">
             <a href="#" className="nav-link">{t("nav.contact")}</a>
-          </li>
-          <li className="nav-item">
+          </NavItem>
+          <NavItem className="nav-item">
             <a href="#" className="nav-link">{t("nav.qa")}</a>
-          </li>
-          <li className="nav-item">
+          </NavItem>
+          <NavItem className="nav-item">
             <select
               value={i18n.language}
               onChange={changeLanguage}
@@ -83,15 +189,15 @@ const Navigation = () => {
               <option value="fi">{t("language.finnish")}</option>
               {/* Add more languages here */}
             </select>
-          </li>
-        </ul>
+          </NavItem>
+        </NavList>
         <AddObservationForm
           open={isFormOpen}
           handleClose={() => setIsFormOpen(false)}
           handleSubmit={handleSubmit}
         />
-      </div>
-    </nav>
+      </NavbarNav>
+    </Navbar>
   );
 };
 

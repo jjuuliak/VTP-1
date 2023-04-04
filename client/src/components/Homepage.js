@@ -1,6 +1,53 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Homepage.css';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoins, faGavel, faChartLine, faChartPie, faBalanceScale, faHandHoldingUsd, faUniversity, faFileInvoiceDollar, faUsers, faSuitcase } from '@fortawesome/free-solid-svg-icons';
+import Card from './ui/Card';
+import PageContainer from './ui/PageContainer';
+
+const Heading = styled.h2`
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+`;
+
+const List = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  margin-top: 1em;
+  margin-bottom: 1em;
+`;
+const PlanLink = styled(Link)`
+  color: var(--primary-blue);
+  text-decoration: none;
+  transition: color 0.2s;
+  &:hover,
+  &:focus {
+    color: var(--secondary-blue);
+    text-decoration: underline;
+  }
+  display: flex;
+  align-items: center;
+`;
+
+const InspectionItem = styled.li`
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  &:hover {
+    background-color: var(--light-background);
+  }
+  &:hover ${PlanLink} {
+    color: var(--secondary-blue);
+  }
+`;
+const Spacer = styled.div`
+  width: 1rem;
+  @media (max-width: 768px) {
+    width: 0;
+    height: 1rem;
+  }
+`;
 
 const Homepage = () => {
   const [selectedInspection, setSelectedInspection] = useState(null);
@@ -26,36 +73,43 @@ const Homepage = () => {
   };
 
   return (
-    <div className="homepage-container">
-      <div className="inspections-list">
-        <h2>Valvonnan kohteet:</h2>
-        <ul>
+    <PageContainer>
+      <Card>
+        <Heading>
+          <FontAwesomeIcon icon={faCoins} className="icon-color" style={{ marginRight: '0.5em' }} />
+          Valvonnan kohteet:
+        </Heading>
+        <List>
           {inspections.map((inspection) => (
-            <li key={inspection.id} onClick={() => handleInspectionClick(inspection)}>
+            <InspectionItem key={inspection.id} onClick={() => handleInspectionClick(inspection)}>
               {inspection.name}
-            </li>
+            </InspectionItem>
           ))}
-        </ul>
-      </div>
-      <div className="inspection-plans">
+        </List>
+      </Card>
+
+      
         {selectedInspection && (
-          <>
-            <h2>Inspection Plans for {selectedInspection.name}:</h2>
-            <ul>
+          <Card>
+            <Heading>Inspection Plans for {selectedInspection.name}:</Heading>
+            <List>
               {inspectionPlans && inspectionPlans.length > 0 ? (
                 inspectionPlans.map((plan) => (
-                  <li key={plan.id}>
-                    <Link to={`/tarkastukset/${plan.id}`}>DataContainer for {plan.subjectOfInspection}</Link>
-                  </li>
+                  <InspectionItem key={plan.id}>
+                    <PlanLink to={`/tarkastukset/${plan.id}`}>
+                      <FontAwesomeIcon icon={faGavel} className="icon-color" style={{ marginRight: '0.5em' }} />
+                      DataContainer for {plan.subjectOfInspection}
+                    </PlanLink>
+                  </InspectionItem>
                 ))
               ) : (
-                <li>No inspection plans found.</li>
+                <p>No inspection plans found.</p>
               )}
-            </ul>
-          </>
+            </List>
+            </Card>
         )}
-      </div>
-    </div>
+      
+    </PageContainer>
   );
 };
 
