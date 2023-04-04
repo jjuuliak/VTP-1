@@ -8,6 +8,11 @@
   --medium-grey-text: #74787C;
   --alert-green: #3C9465;
   --alert-red: #C0392B;
+
+  --container-max-width: 1200px;
+  --container-padding: 1rem;
+  --margin-default: 1rem;
+  --padding-default: 1rem;
 }
 
 /* Typography */
@@ -118,4 +123,8 @@ transition: background-color 0.2s;
 .main-container {
   flex: 1;
   overflow: auto;
+}
+
+.icon-color {
+  color: var(--primary-blue);
 }
