@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
 import { StepPopupProvider } from './contexts/StepPopupContext';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Navigation from './components/Navigation';
 import DataContainer from './components/DataContainer';
 import InspectionPlan from './InspectionPlan';
