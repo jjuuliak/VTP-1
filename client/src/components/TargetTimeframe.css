@@ -11,7 +11,6 @@
   }
   
   .target-timeframe-table {
-    border-collapse: collapse;
     width: 100%;
     margin-bottom: 20px;
   }
@@ -21,29 +20,6 @@
   .target-timeframe-table th:nth-child(3),
   .target-timeframe-table td:nth-child(3) {
       width: 100px;
-  }
-  
-  .target-timeframe-table th,
-  .target-timeframe-table td {
-    padding: 5px;
-    border: 1px solid black;
-  }
-  
-  .target-timeframe-table th {
-    background-color: #444;
-    color: white;
-  }
-  
-  .target-timeframe-table tr:nth-child(odd) {
-    background-color: #f8f8f8;
-  }
-  
-  .target-timeframe-table tr:nth-child(even) {
-    background-color: white;
-  }
-  
-  .target-timeframe-table tr:hover {
-    background-color: #ddd;
   }
 
   .target-timeframe-table .highlighted-date {
