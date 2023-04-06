@@ -32,6 +32,10 @@ jobs:
 
     - name: Start the project
       run: docker-compose up -d
+      
+    - name: Sleep for 30 seconds
+      run: sleep 30s
+      shell: bash
 
     - name: Run unit tests
       run: docker exec vtp_backend_1 npm test
