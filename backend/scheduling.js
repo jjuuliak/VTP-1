@@ -7,7 +7,7 @@ function setupSchedulingRoute(app) {
     const { draft_id, event, person, week } = req.body;
     try {
       const result = await db.query('INSERT INTO scheduling (draft_id, event, person, week) VALUES (?, ?, ?, ?)', [draft_id, event, person, week]);
-      res.status(201).json({ id: result.insertId });
+      res.status(201).json({ id: result[0].insertId });
     } catch (err) {
       res.status(500).json({ error: 'Error creating scheduling' });
     }
@@ -34,7 +34,7 @@ function setupSchedulingRoute(app) {
     const { draft_id, event, person, week } = req.body;
     try {
       const result = await db.query('UPDATE scheduling SET draft_id = ?, event = ?, person = ?, week = ? WHERE id = ?', [draft_id, event, person, week, id]);
-      if (result.affectedRows === 0) {
+      if (result[0].affectedRows === 0) {
         res.status(404).json({ error: 'Scheduling not found' });
       } else {
         res.status(200).json({ message: 'Scheduling updated successfully' });
@@ -49,7 +49,7 @@ function setupSchedulingRoute(app) {
     const { id } = req.params;
     try {
       const result = await db.query('DELETE FROM scheduling WHERE id = ?', [id]);
-      if (result.affectedRows === 0) {
+      if (result[0].affectedRows === 0) {
         res.status(404).json({ error: 'Scheduling not found' });
       } else {
         res.status(200).json({ message: 'Scheduling deleted successfully' });
