@@ -13,39 +13,30 @@ const DataContainer = () => {
   const [targetTimeframeData, setTargetTimeframeData] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8080/api/targettimeframes')
+    fetch(`http://localhost:8080/api/target_timeframes/${inspectionId}`)
       .then((response) => response.json())
-      .then((data) => setTargetTimeframeData(data));
-    fetch(`http://localhost:8080/api/inspections/${inspectionId}`)
+      .then((data) => setTargetTimeframeData(Array.isArray(data) ? data : [data]));
+    fetch(`http://localhost:8080/api/inspection_information/${inspectionId}`)
       .then((response) => response.json())
       .then((data) => setInspectionData(data));
-    fetch('http://localhost:8080/api/documents')
+    fetch(`http://localhost:8080/api/documents/${inspectionId}`)
       .then((response) => response.json())
-      .then((data) => setLatestDocuments(data));
-    fetchSchedulingData();
+      .then((data) => setLatestDocuments(Array.isArray(data) ? data : [data]));
+    fetch(`http://localhost:8080/api/scheduling/${inspectionId}`)
+      .then((response) => response.json())
+      .then((data) => setSchedulingData(Array.isArray(data) ? data : [data]));
   }, [inspectionId]);
 
   const handleSchedulingDataUpdate = (data) => {
     setSchedulingData(data);
   };
 
-  const fetchSchedulingData = async () => {
-    try {
-      const response = await fetch('http://localhost:8080/api/scheduling');
-      const data = await response.json();
-      setSchedulingData(data);
-    } catch (error) {
-      console.error('Error fetching scheduling data:', error);
-    }
-  };
-  
-
   return (
     <>
       <TargetTimeframe targetTimeframeData={targetTimeframeData} />
       <InspectionInformation inspectionData={inspectionData} />
       <LatestDocuments latestDocuments={latestDocuments} />
-      <Scheduling events={schedulingData} setEvents={handleSchedulingDataUpdate} />
+      <Scheduling events={schedulingData} setEvents={handleSchedulingDataUpdate} draftId={inspectionData.draft_id} />
     </>
   );
 };
