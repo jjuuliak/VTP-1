@@ -13,7 +13,7 @@ const InspectionInformation = ({ inspectionData }) => {
         <thead>
           <tr>
             <th>{t('subjectOfInspection')}</th>
-            <th>{data.subjectOfInspection || ''}</th>
+            <th>{data.subject_of_inspection || ''}</th>
           </tr>
         </thead>
         <tbody>
@@ -23,15 +23,15 @@ const InspectionInformation = ({ inspectionData }) => {
           </tr>
           <tr>
             <td>{t('riskArea')}</td>
-            <td>{data.riskArea || ''}</td>
+            <td>{data.risk_area || ''}</td>
           </tr>
           <tr>
             <td>{t('officialDuration')}</td>
-            <td>{data.officialDuration || ''}</td>
+            <td>{data.official_duration_period || ''}</td>
           </tr>
           <tr>
             <td>{t('totalDuration')}</td>
-            <td>{data.totalDuration || ''}</td>
+            <td>{data.total_duration_period || ''}</td>
           </tr>
           <tr>
             <td>{t('participants')}</td>
@@ -39,7 +39,7 @@ const InspectionInformation = ({ inspectionData }) => {
           </tr>
           <tr>
             <td>{t('responsibleInspector')}</td>
-            <td>{data.responsibleInspector || ''}</td>
+            <td>{data.responsible_inspector || ''}</td>
           </tr>
           <tr>
             <td>{t('office')}</td>
@@ -51,11 +51,11 @@ const InspectionInformation = ({ inspectionData }) => {
           </tr>
           <tr>
             <td>{t('subjectContactInformation')}</td>
-            <td>{data.subjectContactInformation || ''}</td>
+            <td>{data.subject_contact_information || ''}</td>
           </tr>
           <tr>
             <td>{t('inspectionContactPerson')}</td>
-            <td>{data.inspectionContactPerson || ''}</td>
+            <td>{data.inspection_contact_person || ''}</td>
           </tr>
         </tbody>
       </table>

@@ -120,6 +120,7 @@ INSERT INTO inspection_information (draft_id, subject_of_inspection, issue, risk
   (11, 'Norppapankki HR Audit', 'Non-compliance with HR policies', 'HR compliance', '1 week', '2 weeks', 'Audit team, HR department', 'Mary Johnson', 'Helsinki', 'HR department', 'contact@norppapankki.fi', 'John Doe');
 
 INSERT INTO target_timeframes (draft_id, goal, planned_date, actual_date, comments, document_id, link_text) VALUES 
+  (1, 'Tarkastussuunnitelma', '2022-02-01', '2022-01-28', '', NULL, NULL),
   (1, 'Gather financial data', '2022-02-01', '2022-01-28', 'Received report earlier than expected', NULL, NULL),
   (1, 'Review financial data', '2022-02-05', '2022-02-08', 'Team member was sick', NULL, NULL),
   (1, 'Finalize report', '2022-02-10', '2022-02-12', 'Final review took longer than anticipated', NULL, NULL),
@@ -168,9 +169,9 @@ INSERT INTO documents (draft_id, title, handler, modified) VALUES
   (12, 'Legal analysis', 'Mike Davis', '2023-01-18 09:43:21');
 
 INSERT INTO scheduling (draft_id, event, person, week) VALUES
-  (1, 'Meeting with CEO', 'John Smith', 2),
-  (1, 'Budget review', 'Jane Doe', 3),
-  (1, 'Marketing strategy session', 'Bob Johnson', 4),
+  (1, 'Meeting with CEO', 'John Smith', 15),
+  (1, 'Budget review', 'Jane Doe', 16),
+  (1, 'Marketing strategy session', 'Bob Johnson', 17),
   (2, 'IT planning meeting', 'Sarah Williams', 2),
   (2, 'Product development review', 'Tom Lee', 3),
   (2, 'Sales team training', 'Karen Jones', 4),
