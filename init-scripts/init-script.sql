@@ -24,7 +24,7 @@ CREATE TABLE inspection_subject (
 CREATE TABLE IF NOT EXISTS drafts (
   id INT AUTO_INCREMENT PRIMARY KEY,
   subject_id INT NOT NULL,
-  CONSTRAINT fk_drafts_subjects FOREIGN KEY (subject_id) REFERENCES inspection_subject(id)
+  CONSTRAINT fk_drafts_subjects FOREIGN KEY (subject_id) REFERENCES inspection_subject(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS inspection_information (
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS inspection_information (
   department VARCHAR(255),
   subject_contact_information TEXT NOT NULL,
   inspection_contact_person VARCHAR(255),
-  FOREIGN KEY (draft_id) REFERENCES drafts(id)
+  FOREIGN KEY (draft_id) REFERENCES drafts(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS target_timeframes (
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS target_timeframes (
   comments VARCHAR(255) DEFAULT NULL,
   document_id INT DEFAULT NULL,
   link_text VARCHAR(255) DEFAULT NULL,
-  FOREIGN KEY (draft_id) REFERENCES drafts(id)
+  FOREIGN KEY (draft_id) REFERENCES drafts(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS documents (
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS documents (
   title VARCHAR(255) NOT NULL,
   handler VARCHAR(255),
   modified DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  CONSTRAINT fk_documents_drafts FOREIGN KEY (draft_id) REFERENCES drafts(id)
+  CONSTRAINT fk_documents_drafts FOREIGN KEY (draft_id) REFERENCES drafts(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS scheduling (
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS scheduling (
   event TEXT NOT NULL,
   person TEXT NOT NULL,
   week INT NOT NULL,
-  CONSTRAINT fk_scheduling_drafts FOREIGN KEY (draft_id) REFERENCES drafts(id)
+  CONSTRAINT fk_scheduling_drafts FOREIGN KEY (draft_id) REFERENCES drafts(id) ON DELETE CASCADE
 );
 
 
