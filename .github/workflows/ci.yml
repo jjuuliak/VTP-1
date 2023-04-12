@@ -10,6 +10,9 @@ jobs:
   build_and_test:
     runs-on: ubuntu-latest
 
+    env:
+      MODE: test
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
