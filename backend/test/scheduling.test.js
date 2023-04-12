@@ -10,26 +10,55 @@ chai.should();
 const expect = chai.expect;
 
 describe('Scheduling API', () => {
-  // Before each test, create a new scheduling record in the database
-  beforeEach(async () => {
-    const query = `
-      INSERT INTO scheduling (draft_id, event, person, week)
-      VALUES (?, ?, ?, ?)
-    `;
-    const values = [1, "Test event", "Test person", 1];
-    await db.query(query, values);
+  let createdSubjectId, createdDraftId, createdInspectionInfoId, createdTargetTimeframeId, createdDocumentId, createdSchedulingId;
+
+  before(async () => {
+      // Clear database tables before starting tests
+      await db.query('DELETE FROM target_timeframes');
+      await db.query('DELETE FROM documents');
+      await db.query('DELETE FROM scheduling');
+      await db.query('DELETE FROM inspection_information');
+      await db.query('DELETE FROM drafts');
+      await db.query('DELETE FROM inspection_subject');
   });
 
-  // After each test, delete all scheduling records from the database
+  beforeEach(async () => {
+      // Add data needed for the tests
+      const [subjectResult] = await db.query("INSERT INTO inspection_subject (name) VALUES ('Test Subject')");
+      createdSubjectId = subjectResult.insertId;
+
+      const [draftResult] = await db.query("INSERT INTO drafts (subject_id) VALUES (?)", [createdSubjectId]);
+      createdDraftId = draftResult.insertId;
+
+      const [inspectionInfoResult] = await db.query(`INSERT INTO inspection_information (draft_id, subject_of_inspection, issue, risk_area, official_duration_period, total_duration_period, participants, responsible_inspector, office, department, subject_contact_information, inspection_contact_person)
+                          VALUES (?, 'Test Inspection', 'Test issue', 'Test risk area', '1 week', '1 week', 'John Doe', 'Inspector', 'Office', 'Department', 'Subject contact info', 'Contact person')`, [createdDraftId]);
+      createdInspectionInfoId = inspectionInfoResult.insertId;
+
+      const [targetTimeframeResult] = await db.query("INSERT INTO target_timeframes (draft_id, goal, planned_date) VALUES (?, 'Test Goal', '2023-01-01')", [createdDraftId]);
+      createdTargetTimeframeId = targetTimeframeResult.insertId;
+
+      const [documentResult] = await db.query("INSERT INTO documents (draft_id, title) VALUES (?, 'Test Document')", [createdDraftId]);
+      createdDocumentId = documentResult.insertId;
+
+      const [schedulingResult] = await db.query("INSERT INTO scheduling (draft_id, event, person, week) VALUES (?, 'Test Event', 'John Doe', 1)", [createdDraftId]);
+      createdSchedulingId = schedulingResult.insertId;
+  });
+
   afterEach(async () => {
-    await db.query('DELETE FROM scheduling');
+      // Clear database tables after each test
+      await db.query('DELETE FROM target_timeframes');
+      await db.query('DELETE FROM documents');
+      await db.query('DELETE FROM scheduling');
+      await db.query('DELETE FROM inspection_information');
+      await db.query('DELETE FROM drafts');
+      await db.query('DELETE FROM inspection_subject');
   });
 
   describe('POST /api/scheduling', () => {
     it('should create a new scheduling record', async () => {
       const res = await request(app)
         .post('/api/scheduling')
-        .send({ draft_id: 1, event: 'New event', person: 'New person', week: 2 });
+        .send({ draft_id: createdDraftId, event: 'New event', person: 'New person', week: 2 });
       assert.equal(res.status, 201);
       assert.isNumber(res.body.id);
     });
@@ -47,8 +76,8 @@ describe('Scheduling API', () => {
     it('should retrieve one scheduling record by id', async () => {
       // Insert a scheduling to get
       const insertResponse = await chai.request(app)
-      .post('/api/scheduling')
-      .send({ draft_id: 1, event: 'Test event', person: 'Test person', week: 1 });
+        .post('/api/scheduling')
+        .send({ draft_id: createdDraftId, event: 'Test event', person: 'Test person', week: 1 });
       const id = insertResponse.body.id;
       const response = await chai.request(app).get(`/api/scheduling/${id}`);
       expect(response.status).to.equal(200);
@@ -77,7 +106,7 @@ describe('Scheduling API', () => {
       // Insert a scheduling to delete
       const insertResponse = await chai.request(app)
         .post('/api/scheduling')
-        .send({ draft_id: 1, event: 'Delete event', person: 'Delete person', week: 2 });
+        .send({ draft_id: createdDraftId, event: 'Delete event', person: 'Delete person', week: 2 });
       const schedulingId = insertResponse.body.id;
 
       // Delete the scheduling
@@ -93,48 +122,39 @@ describe('Scheduling API', () => {
   });
   
   describe('PUT /api/scheduling/:id', () => {
-    // Create a scheduling to update
-    let schedulingId;
-    before(async () => {
-      const result = await db.query(
-        'INSERT INTO scheduling (draft_id, event, person, week) VALUES (?, ?, ?, ?)',
-        [1, 'Update event', 'Update person', 2]
-      );
-      schedulingId = result[0].insertId;
-    });
-  
     // Test updating an existing scheduling
     it('should update an existing scheduling', async () => {
       const res = await chai
         .request(app)
-        .put(`/api/scheduling/${schedulingId}`)
+        .put(`/api/scheduling/${createdSchedulingId}`)
         .send({
-          draft_id: 2,
+          draft_id: createdDraftId,
           event: 'Updated event',
           person: 'Updated person',
           week: 3,
         });
       expect(res).to.have.status(200);
-  
+
       const updatedScheduling = await db.query('SELECT * FROM scheduling WHERE id = ?', [
-        schedulingId,
+        createdSchedulingId,
       ]);
       expect(updatedScheduling[0]).to.deep.include({
-        id: schedulingId,
-        draft_id: 2,
+        id: createdSchedulingId,
+        draft_id: createdDraftId,
         event: 'Updated event',
         person: 'Updated person',
         week: 3,
       });
     });
-  
+
     // Test updating a non-existent scheduling
     it('should return a 404 error if the scheduling does not exist', async () => {
+      const nonExistentSchedulingId = 999;
       const res = await chai
         .request(app)
-        .put('/api/scheduling/999')
+        .put(`/api/scheduling/${nonExistentSchedulingId}`)
         .send({
-          draft_id: 2,
+          draft_id: createdDraftId,
           event: 'Updated event',
           person: 'Updated person',
           week: 3,
@@ -142,11 +162,5 @@ describe('Scheduling API', () => {
       expect(res).to.have.status(404);
       expect(res.body).to.deep.equal({ error: 'Scheduling not found' });
     });
-  
-    // Clean up the test data
-    after(async () => {
-      await db.query('DELETE FROM scheduling WHERE id = ?', [schedulingId]);
-    });
   });
-
 });
