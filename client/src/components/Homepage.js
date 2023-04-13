@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -52,21 +52,29 @@ const Spacer = styled.div`
 const Homepage = () => {
   const [selectedInspection, setSelectedInspection] = useState(null);
   const [inspectionPlans, setInspectionPlans] = useState([]);
+  const [inspections, setInspections] = useState([]);
 
-  const inspections = [
-    { id: 1, name: 'Inspection 1' },
-    { id: 2, name: 'Inspection 2' },
-  ];
+  useEffect(() => {
+    const fetchInspections = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/api/inspection_subjects');
+        const data = await response.json();
+        setInspections(data);
+      } catch (error) {
+        console.error('Error fetching inspections:', error);
+      }
+    };
+
+    fetchInspections();
+  }, []);
 
   const handleInspectionClick = async (inspection) => {
     setSelectedInspection(inspection);
-
+  
     try {
-      // No implementation for that kind of call yet
-      //const response = await fetch(`http://localhost:8080/api/inspections/${inspection.id}`);
-      const response = await fetch('http://localhost:8080/api/inspections');
+      const response = await fetch(`http://localhost:8080/api/inspection_information/${inspection.id}`);
       const data = await response.json();
-      setInspectionPlans(data);
+      setInspectionPlans(Array.isArray(data) ? data : [data]);
     } catch (error) {
       console.error('Error fetching inspection plans:', error);
     }
@@ -98,7 +106,7 @@ const Homepage = () => {
                   <InspectionItem key={plan.id}>
                     <PlanLink to={`/tarkastukset/${plan.id}`}>
                       <FontAwesomeIcon icon={faGavel} className="icon-color" style={{ marginRight: '0.5em' }} />
-                      DataContainer for {plan.subjectOfInspection}
+                      DataContainer for {plan.subject_of_inspection}
                     </PlanLink>
                   </InspectionItem>
                 ))
