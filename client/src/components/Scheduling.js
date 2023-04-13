@@ -91,7 +91,7 @@ const Scheduling = ({ events, setEvents, draftId }) => {
             ))}
           </tr>
         </thead>
-        {rows.length ? (
+        {rows && rows.length ? (
           <tbody>
             {rows.map((row) => (
               <tr key={row.id}>

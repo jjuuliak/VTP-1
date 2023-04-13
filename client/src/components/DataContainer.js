@@ -7,36 +7,27 @@ import TargetTimeframe from './TargetTimeframe';
 
 const DataContainer = () => {
   const { inspectionId } = useParams();
-  const [inspectionData, setInspectionData] = useState([]);
-  const [latestDocuments, setLatestDocuments] = useState([]);
-  const [schedulingData, setSchedulingData] = useState([]);
-  const [targetTimeframeData, setTargetTimeframeData] = useState([]);
+  const [draftData, setDraftData] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/target_timeframes/${inspectionId}`)
+    fetch(`http://localhost:8080/api/drafts/${inspectionId}/full`)
       .then((response) => response.json())
-      .then((data) => setTargetTimeframeData(Array.isArray(data) ? data : [data]));
-    fetch(`http://localhost:8080/api/inspection_information/${inspectionId}`)
-      .then((response) => response.json())
-      .then((data) => setInspectionData(data));
-    fetch(`http://localhost:8080/api/documents/${inspectionId}`)
-      .then((response) => response.json())
-      .then((data) => setLatestDocuments(Array.isArray(data) ? data : [data]));
-    fetch(`http://localhost:8080/api/scheduling/${inspectionId}`)
-      .then((response) => response.json())
-      .then((data) => setSchedulingData(Array.isArray(data) ? data : [data]));
+      .then((data) => setDraftData(data));
   }, [inspectionId]);
 
   const handleSchedulingDataUpdate = (data) => {
-    setSchedulingData(data);
+    setDraftData({ ...draftData, scheduling: data });
   };
 
   return (
     <>
-      <TargetTimeframe targetTimeframeData={targetTimeframeData} />
-      <InspectionInformation inspectionData={inspectionData} />
-      <LatestDocuments latestDocuments={latestDocuments} />
-      <Scheduling events={schedulingData} setEvents={handleSchedulingDataUpdate} draftId={inspectionData.draft_id} />
+      <TargetTimeframe targetTimeframeData={draftData.target_timeframes} />
+      <InspectionInformation inspectionData={draftData} />
+      <LatestDocuments latestDocuments={draftData.documents} />
+      <Scheduling 
+        events={draftData.scheduling}
+        setEvents={handleSchedulingDataUpdate}
+        draftId={draftData.draft_id} />
     </>
   );
 };

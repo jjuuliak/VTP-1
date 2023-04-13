@@ -15,14 +15,15 @@ function setupTargetTimeframesRoute(app) {
     });
     
 
-    app.get('/api/target_timeframes/:draft_id', async (req, res) => {
-        const { draft_id } = req.params;
+
+    app.get('/api/target_timeframes/:id', async (req, res) => {
+        const { id } = req.params;
         try {
-            const [rows] = await db.query('SELECT * FROM target_timeframes WHERE draft_id = ?', [draft_id]);
+            const [rows] = await db.query('SELECT * FROM target_timeframes WHERE id = ?', [id]);
             if (rows.length === 0) {
                 res.status(404).json({ error: 'Target timeframes not found' });
             } else {
-                res.json(rows);
+                res.json(rows[0]);
             }
         } catch (err) {
             res.status(500).json({ error: 'Error retrieving target timeframes' });
