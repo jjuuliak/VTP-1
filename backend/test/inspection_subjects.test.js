@@ -93,7 +93,7 @@ describe('Inspection Subjects API', () => {
         it('should retrieve all drafts for a given inspection subject', async () => {
             const [sub] = await db.query('INSERT INTO inspection_subject (name) VALUES (?)', ['Subject 1']);
             const [draft] = await db.query('INSERT INTO drafts (subject_id) VALUES (?)', [sub.insertId]);
-            await db.query('INSERT INTO inspection_information (draft_id, issue) VALUES (?, ?)', [draft.insertId, 'Issue 1']);
+            await db.query('INSERT INTO inspection_information (draft_id, issue, risk_area, official_duration_period, total_duration_period, participants, responsible_inspector, subject_contact_information) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [draft.insertId, 'Issue 1', 'Risk Area 1', '1 day', '1 day', 'John Doe', 'Inspector 1', 'Contact info']);
             const res = await chai.request(app).get(`/api/inspection_subjects/${sub.insertId}/drafts`);
             expect(res.status).to.equal(200);
             expect(res.body).to.be.an('array');
