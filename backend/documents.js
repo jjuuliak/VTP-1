@@ -28,11 +28,11 @@ function setupDocumentsRoute(app) {
   app.get('/api/documents/:id', async (req, res) => {
     const { id } = req.params;
     try {
-      const [rows] = await db.query('SELECT * FROM documents WHERE draft_id = ?', [id]);
+      const [rows] = await db.query('SELECT * FROM documents WHERE id = ?', [id]);
       if (rows.length === 0) {
         res.status(404).json({ error: 'Document not found' });
       } else {
-        res.json(rows);
+        res.json(rows[0]);
       }
     } catch (err) {
       res.status(500).json({ error: 'Error retrieving document' });

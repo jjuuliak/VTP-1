@@ -23,7 +23,7 @@ const TargetTimeframe = ({ targetTimeframeData }) => {
           </tr>
         </thead>
         <tbody>
-          {targetTimeframeData.map((item, index) => {
+          {targetTimeframeData && targetTimeframeData.map((item, index) => {
             const suunniteltuDate = new Date(item.planned_date);
             let suunniteltuCellClass = '';
 
