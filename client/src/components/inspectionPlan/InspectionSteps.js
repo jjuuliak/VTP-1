@@ -1,4 +1,16 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
+import Table from '../ui/Table';
+import Button from '../ui/Button';
+
+const InspectionStepsTitle = styled.h2`
+  margin-bottom: 1rem;
+`;
+
+const StyledTable = styled(Table)`
+  width: 100%;
+  margin-bottom: 1rem;
+`;
 
 const InspectionSteps = ({ stepsData, setStepsData, approvalChecked }) => {
   const [showAddModal, setShowAddModal] = useState(false);
@@ -30,8 +42,10 @@ const InspectionSteps = ({ stepsData, setStepsData, approvalChecked }) => {
 
   return (
     <div>
-      <h2>Keskeisimmät tarkastuksen vaiheet</h2>
-      <table>
+      <InspectionStepsTitle>
+        Keskeisimmät tarkastuksen vaiheet
+      </InspectionStepsTitle>      
+      <StyledTable>
         <thead>
           <tr>
             <th>Vaiheistus</th>
@@ -48,8 +62,8 @@ const InspectionSteps = ({ stepsData, setStepsData, approvalChecked }) => {
             </tr>
           ))}
         </tbody>
-      </table>
-      <button onClick={handleAddRow} disabled={approvalChecked}>Lisää rivi</button>
+        </StyledTable>
+      <Button onClick={handleAddRow} disabled={approvalChecked}>Lisää rivi</Button>
       {showAddModal && (
         <div className="modal">
           <div className="modal-content">

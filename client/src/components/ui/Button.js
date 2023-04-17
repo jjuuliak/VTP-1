@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
-  background-color: var(--primary-blue);
+  background-color: var(--secondary-blue);
   color: white;
   font-size: 1rem;
   padding: 0.5rem 1rem;
@@ -12,7 +12,7 @@ const StyledButton = styled.button`
   transition: background-color 0.2s;
 
   &:hover {
-    background-color: var(--secondary-blue);
+    background-color: var(--primary-blue);
   }
 
   &:disabled {

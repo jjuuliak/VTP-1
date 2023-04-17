@@ -7,7 +7,8 @@ import InfoBox from './components/inspectionPlan/InfoBox';
 import TopicAreas from './components/inspectionPlan/TopicAreas';
 import InterviewTable from './components/inspectionPlan/InterviewTable';
 import CommentTable from './components/inspectionPlan/CommentTable';
-import './InspectionPlan.css';
+import PageContainer from './components/ui/PageContainer';
+import Card from './components/ui/Card';
 
 const InspectionPlan = () => {
   const inspectionData = {
@@ -79,8 +80,9 @@ const InspectionPlan = () => {
   const [approvalChecked, setApprovalChecked] = useState(false);
 
   return (
-    <div>
+    <PageContainer>
       <h1>Inspection Plan</h1>
+      <Card>
       <div className="components-container">
         <div className="component">
           <BasicInformation {...inspectionData} />
@@ -97,8 +99,12 @@ const InspectionPlan = () => {
           <InspectionSteps stepsData={stepsData} setStepsData={setStepsData} approvalChecked={approvalChecked} />
         </div>
       </div>
+      </Card>
+      <Card>
       <InfoBox title="Tavoite" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non ex quis lorem hendrerit bibendum quis id lorem. Praesent blandit vel ante eu tempor. Fusce venenatis malesuada sem, eu commodo enim facilisis eget. Donec lobortis tortor sit amet commodo malesuada. Nulla facilisi. Sed viverra sapien nisl, vitae faucibus odio hendrerit quis." className="full-width" />
       <TopicAreas data={topicData} approvalChecked={approvalChecked} className="full-width" />
+      </Card>
+      <Card>
       <InfoBox title="Peruste" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non ex quis lorem hendrerit bibendum quis id lorem. Praesent blandit vel ante eu tempor. Fusce venenatis malesuada sem, eu commodo enim facilisis eget. Donec lobortis tortor sit amet commodo malesuada. Nulla facilisi. Sed viverra sapien nisl, vitae faucibus odio hendrerit quis." className="full-width" />
       <InfoBox title="Aihe" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non ex quis lorem hendrerit bibendum quis id lorem. Praesent blandit vel ante eu tempor. Fusce venenatis malesuada sem, eu commodo enim facilisis eget. Donec lobortis tortor sit amet commodo malesuada. Nulla facilisi. Sed viverra sapien nisl, vitae faucibus odio hendrerit quis." className="full-width" />
       <InfoBox title="Ulkopuolelle rajattavat kokonaisuudet" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non ex quis lorem hendrerit bibendum quis id lorem. Praesent blandit vel ante eu tempor. Fusce venenatis malesuada sem, eu commodo enim facilisis eget. Donec lobortis tortor sit amet commodo malesuada. Nulla facilisi. Sed viverra sapien nisl, vitae faucibus odio hendrerit quis." className="full-width" />
@@ -110,8 +116,9 @@ const InspectionPlan = () => {
       <div className="component full-width">
         <CommentTable data={commentsData} setData={setCommentsData} approvalChecked={approvalChecked} setApprovalChecked={setApprovalChecked} />
       </div>
+      </Card>
       {/* Add any other components you need here */}
-    </div>
+      </PageContainer>
   );
 };
 

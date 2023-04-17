@@ -1,10 +1,21 @@
 import React from 'react';
+import styled from 'styled-components';
+import Table from '../ui/Table';
+
+const TimetableTitle = styled.h2`
+  margin-bottom: 1rem;
+`;
+
+const StyledTable = styled(Table)`
+  width: 100%;
+  margin-bottom: 1rem;
+`;
 
 const Timetable = ({ data }) => {
   return (
     <div>
-      <h2>Tavoiteaikataulu</h2>
-      <table>
+      <TimetableTitle>Tavoiteaikataulu</TimetableTitle>
+      <StyledTable>
         <thead>
           <tr>
             <th>Tavoite</th>
@@ -19,7 +30,7 @@ const Timetable = ({ data }) => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </StyledTable>
     </div>
   );
 };

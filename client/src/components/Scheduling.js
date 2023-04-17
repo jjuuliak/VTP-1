@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import './Scheduling.css';
 import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
+import Table from './ui/Table';
+import Button from './ui/Button';
+import Form from './ui/Form';
+import TextInput from './ui/TextInput';
+
+const SchedulingWrapper = styled.div`
+`;
 
 const Scheduling = ({ events, setEvents, draftId }) => {
   const [rows, setRows] = useState(events || []);
   const { t } = useTranslation();
+  const colWidths = ['33.33%', '33.33%', '33.33%'];
+
 
   useEffect(() => {
     setRows(events);
@@ -81,9 +91,9 @@ const Scheduling = ({ events, setEvents, draftId }) => {
   };
 
   return (
-    <div className="scheduling-container">
+    <SchedulingWrapper>
       <h2>{t('scheduling.title')}</h2>
-      <table className="table">
+      <Table colWidths={colWidths}>
         <thead>
           <tr>
             {headers.map((header, index) => (
@@ -104,20 +114,20 @@ const Scheduling = ({ events, setEvents, draftId }) => {
             ))}
           </tbody>
         ) : null}
-      </table>
-      <button className="scheduling-button" onClick={() => setShowForm(true)}>
+      </Table>
+      <Button className="scheduling-button" onClick={() => setShowForm(true)}>
         {t('scheduling.addColumn')}
-      </button>
+      </Button>
       {showForm && (
         <div className="modal" onClick={() => setShowForm(false)}>
           <div
             className="modal-content"
             onClick={(e) => e.stopPropagation()}
           >
-            <form className="scheduling-form" onSubmit={handleFormSubmit}>
+            <Form className="scheduling-form" onSubmit={handleFormSubmit}>
               <label>
                 {t('scheduling.event')}:
-                <input
+                <TextInput
                   type="text"
                   name="event"
                   value={newEvent.event}
@@ -126,7 +136,7 @@ const Scheduling = ({ events, setEvents, draftId }) => {
               </label>
               <label>
                 {t('scheduling.person')}:
-                <input
+                <TextInput
                   type="text"
                   name="person"
                   value={newEvent.person}
@@ -135,24 +145,24 @@ const Scheduling = ({ events, setEvents, draftId }) => {
               </label>
               <label>
                 {t('scheduling.week')}:
-                <input
+                <TextInput
                   type="text"
                   name="week"
                   value={newEvent.week}
                   onChange={handleFormChange}
                 />
               </label>
-              <button type="submit" onClick={() => setEvents(rows)}>
+              <Button type="submit" onClick={() => setEvents(rows)}>
                 {t('scheduling.save')}
-              </button>
-              <button type="button" onClick={() => setShowForm(false)}>
+              </Button>
+              <Button type="button" onClick={() => setShowForm(false)}>
                 {t('scheduling.cancel')}
-              </button>
-            </form>
+              </Button>
+            </Form>
           </div>
         </div>
       )}
-    </div>
+    </SchedulingWrapper>
   );
 };
 

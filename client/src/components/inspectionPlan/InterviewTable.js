@@ -1,6 +1,16 @@
 import React, { useState } from "react";
+import Table from '../ui/Table';
+import Button from '../ui/Button';
+import TextInput from '../ui/TextInput';
+import styled from 'styled-components';
+
+const InterviewTableTitle = styled.h2`
+  margin-bottom: 1rem;
+`;
 
 const InterviewTable = ({ data, setData, approvalChecked }) => {
+  const colWidths = ['33%', '33%', '34%'];
+
   const [interviews, setInterviews] = useState(data);
 
   const [showForm, setShowForm] = useState(false);
@@ -21,8 +31,8 @@ const InterviewTable = ({ data, setData, approvalChecked }) => {
 
   return (
     <div className="interview-table">
-      <h2>Haastattelut</h2>
-      <table>
+      <InterviewTableTitle>Haastattelut</InterviewTableTitle>
+      <Table colWidths={colWidths}>
         <thead>
           <tr>
             <th>Nimi</th>
@@ -39,41 +49,41 @@ const InterviewTable = ({ data, setData, approvalChecked }) => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
       <div className="add-interview">
       {!showForm ? (
-          <button onClick={() => setShowForm(true)} disabled={approvalChecked}>
+          <Button onClick={() => setShowForm(true)} disabled={approvalChecked}>
             Lisää
-          </button>
+          </Button>
         ) : (
           <form onSubmit={handleSubmit}>
-            <input
+            <TextInput
               type="text"
               placeholder="Nimi"
               value={name}
               onChange={(e) => setName(e.target.value)}
               disabled={approvalChecked}
             />
-            <input
+            <TextInput
               type="text"
               placeholder="Titteli"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               disabled={approvalChecked}
             />
-            <input
+            <TextInput
               type="text"
               placeholder="Yksikkö"
               value={unit}
               onChange={(e) => setUnit(e.target.value)}
               disabled={approvalChecked}
             />
-            <button type="submit" disabled={approvalChecked}>
+            <Button type="submit" disabled={approvalChecked}>
               Tallenna
-            </button>
-            <button onClick={() => setShowForm(false)} disabled={approvalChecked}>
+            </Button>
+            <Button onClick={() => setShowForm(false)} disabled={approvalChecked}>
               Peruuta
-            </button>
+            </Button>
           </form>
         )}
       </div>

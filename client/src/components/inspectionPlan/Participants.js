@@ -1,6 +1,25 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
+import Table from '../ui/Table';
+import Button from '../ui/Button';
+import TextInput from '../ui/TextInput';
 
-const Participants = ({ participants, setParticipants, approvalChecked  }) => {
+const ParticipantsTitle = styled.h2`
+  margin-bottom: 1rem;
+`;
+
+const StyledTable = styled(Table)`
+  width: 100%;
+  margin-bottom: 1rem;
+`;
+
+const FormContainer = styled.div`
+  margin-bottom: 1rem;
+`;
+
+const Participants = ({ participants, setParticipants, approvalChecked }) => {
+  const colWidths = ['auto', '30%', 'auto', 'auto', 'auto', 'auto'];
+
   const [showForm, setShowForm] = useState(false);
   const [newParticipant, setNewParticipant] = useState({
     name: '',
@@ -47,8 +66,8 @@ const Participants = ({ participants, setParticipants, approvalChecked  }) => {
 
   return (
     <div>
-      <h2>Osallistujat</h2>
-      <table>
+      <ParticipantsTitle>Osallistujat</ParticipantsTitle>
+      <StyledTable colWidths={colWidths}>
         <thead>
           <tr>
             <th>Nimi</th>
@@ -68,15 +87,15 @@ const Participants = ({ participants, setParticipants, approvalChecked  }) => {
               <td>{participant.htp}</td>
               <td>{participant.responsibility}</td>
               <td>
-              {!editedParticipant || editedParticipant.id !== participant.id ? (
-                  <button onClick={(event) => handleEditClick(event, participant)} disabled={approvalChecked}>
+                {!editedParticipant || editedParticipant.id !== participant.id ? (
+                  <Button onClick={(event) => handleEditClick(event, participant)} disabled={approvalChecked}>
                     Muokkaa
-                  </button>
+                  </Button>
                 ) : (
                   <form onSubmit={(event) => handleEditSubmit(event, editedParticipant)}>
                     <div>
                       <label htmlFor="name">Nimi:</label>
-                      <input
+                      <TextInput
                         type="text"
                         id="name"
                         name="name"
@@ -91,7 +110,7 @@ const Participants = ({ participants, setParticipants, approvalChecked  }) => {
                     </div>
                     <div>
                       <label htmlFor="email">Sähköposti:</label>
-                      <input
+                      <TextInput
                         type="email"
                         id="email"
                         name="email"
@@ -106,7 +125,7 @@ const Participants = ({ participants, setParticipants, approvalChecked  }) => {
                     </div>
                     <div>
                       <label htmlFor="phone">Matkapuhelinnumero:</label>
-                      <input
+                      <TextInput
                         type="text"
                         id="phone"
                         name="phone"
@@ -121,7 +140,7 @@ const Participants = ({ participants, setParticipants, approvalChecked  }) => {
                     </div>
                     <div>
                       <label htmlFor="htp">Htp:</label>
-                      <input
+                      <TextInput
                         type="text"
                         id="htp"
                         name="htp"
@@ -136,7 +155,7 @@ const Participants = ({ participants, setParticipants, approvalChecked  }) => {
                     </div>
                     <div>
                       <label htmlFor="responsibility">Vastuu:</label>
-                      <input
+                      <TextInput
                         type="text"
                         id="responsibility"
                         name="responsibility"
@@ -149,25 +168,27 @@ const Participants = ({ participants, setParticipants, approvalChecked  }) => {
                         }
                       />
                     </div>
-                    <button type="submit">Tallenna</button>
-                    <button onClick={() => setEditedParticipant(null)}>Peruuta</button>
+                    <Button type="submit">Tallenna</Button>
+                    <Button onClick={() => setEditedParticipant(null)}>Peruuta</Button>
                   </form>
                 )}
               </td>
             </tr>
           ))}
         </tbody>
-      </table>
+        </StyledTable>
+
       {!showForm && (
-        <button onClick={() => setShowForm(true)} disabled={approvalChecked}>
+        <Button onClick={() => setShowForm(true)} disabled={approvalChecked}>
           Lisää osallistuja
-        </button>
+        </Button>
       )}
       {showForm && (
+        <FormContainer>
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="nimi">Nimi:</label>
-            <input
+            <TextInput
               type="text"
               id="name"
               name="name"
@@ -177,7 +198,7 @@ const Participants = ({ participants, setParticipants, approvalChecked  }) => {
           </div>
           <div>
             <label htmlFor="sähköposti">Sähköposti:</label>
-            <input
+            <TextInput
               type="email"
               id="email"
               name="email"
@@ -187,7 +208,7 @@ const Participants = ({ participants, setParticipants, approvalChecked  }) => {
           </div>
           <div>
             <label htmlFor="matkapuhelinnumero">Matkapuhelinnumero:</label>
-            <input
+            <TextInput
               type="text"
               id="phone"
               name="phone"
@@ -197,7 +218,7 @@ const Participants = ({ participants, setParticipants, approvalChecked  }) => {
           </div>
           <div>
             <label htmlFor="htp">Htp:</label>
-            <input
+            <TextInput
               type="text"
               id="htp"
               name="htp"
@@ -207,7 +228,7 @@ const Participants = ({ participants, setParticipants, approvalChecked  }) => {
           </div>
           <div>
             <label htmlFor="responsibility">Vastuu:</label>
-            <input
+            <TextInput
               type="text"
               id="responsibility"
               name="responsibility"
@@ -215,8 +236,9 @@ const Participants = ({ participants, setParticipants, approvalChecked  }) => {
               onChange={handleInputChange}
             />
           </div>
-          <button type="submit">Tallenna</button>
+          <Button type="submit">Tallenna</Button>
         </form>
+        </FormContainer>
       )}
     </div>
   );

@@ -1,6 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const InputWrapper = styled.div`
+  margin-bottom: 1rem;
+`;
+
+const InputLabel = styled.label`
+  display: block;
+  margin-bottom: 0.5rem;
+`;
+
 const StyledInput = styled.input`
   width: 100%;
   padding: 0.5rem;
@@ -16,8 +25,11 @@ const StyledInput = styled.input`
   }
 `;
 
-const TextInput = React.forwardRef((props, ref) => {
-  return <StyledInput ref={ref} {...props} />;
-});
+const TextInput = React.forwardRef(({ label, ...props }, ref) => (
+  <InputWrapper>
+    {label && <InputLabel htmlFor={props.id}>{label}</InputLabel>}
+    <StyledInput ref={ref} {...props} />
+  </InputWrapper>
+));
 
 export default TextInput;

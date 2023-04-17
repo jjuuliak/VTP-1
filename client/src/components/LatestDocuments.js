@@ -1,9 +1,18 @@
 import React from 'react';
 import './LatestDocuments.css';
 import { useTranslation } from 'react-i18next';
+import Table from './ui/Table';
+import styled from 'styled-components';
+
+const LatestDocumentsWrapper = styled.div`
+  h2 {
+    margin-bottom: 1rem;
+  }
+`;
 
 const LatestDocuments = ({ latestDocuments }) => {
   const { t } = useTranslation();
+  const colWidths = ['260px'];
 
   const formatDate = (date) => {
     const options = {
@@ -18,9 +27,9 @@ const LatestDocuments = ({ latestDocuments }) => {
   };
 
   return (
-    <div className="latest-documents">
+    <LatestDocumentsWrapper>
       <h2>{t('latestDocuments')}</h2>
-      <table>
+      <Table colWidths={colWidths}>
         <thead>
           <tr>
             <th>{t('document')}</th>
@@ -29,7 +38,7 @@ const LatestDocuments = ({ latestDocuments }) => {
           </tr>
         </thead>
         <tbody>
-          {latestDocuments && latestDocuments.map((document) => (
+          {latestDocuments.map((document) => (
             <tr key={document.id}>
               <td>{document.title}</td>
               <td>{document.handler}</td>
@@ -37,8 +46,8 @@ const LatestDocuments = ({ latestDocuments }) => {
             </tr>
           ))}
         </tbody>
-      </table>
-    </div>
+      </Table>
+    </LatestDocumentsWrapper>
   );
 };
 
