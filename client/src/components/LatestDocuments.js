@@ -38,7 +38,7 @@ const LatestDocuments = ({ latestDocuments }) => {
           </tr>
         </thead>
         <tbody>
-          {latestDocuments.map((document) => (
+          {latestDocuments && latestDocuments.map((document) => (
             <tr key={document.id}>
               <td>{document.title}</td>
               <td>{document.handler}</td>
